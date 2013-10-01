@@ -22,9 +22,12 @@ programming in general.
 * TDD (no line of production code is written without a test)
 * Branch per feature and then pull request
 * Code reviews
+* Heroku deployment with staging and production sites
+
 
 ### Tools
 
+* PostgreSQL database
 * heroku toolbelt
 * slim templates
 * rSpec for unit and acceptance tests
