@@ -23,12 +23,14 @@ programming in general.
 * Branch per feature and then pull request
 * Code reviews
 * Heroku deployment with staging and production sites
+* Continuos Integration
 
 
 ### Tools
 
 * PostgreSQL database
 * heroku toolbelt
+* Guard
 * slim templates
 * rSpec for unit and acceptance tests
 * Jasmine for JS unit and integration tests
