@@ -39,3 +39,32 @@ programming in general.
 * Knockout.js
 * Coffeescript
 * Devise
+* Vagrant
+
+## Getting Started
+
+### Code
+
+Check out the code first
+
+```
+git clone https://github.com/winnipegrb/winnivote.git
+```
+
+Alternatively, go to https://github.com/winnipegrb/winnivote, fork it, and clone your own copy
+
+### Using Vagrant (optional)
+
+1. [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+1. [Install Vagrant](http://docs.vagrantup.com/v2/installation/)
+1. Run `vagrant up`
+1. `vagrant ssh`
+1. `cd /vagrant`
+
+### Configuring the app and running it
+
+```
+bundle install
+bundle exec db:migrate
+bundle exec rails s
+```
