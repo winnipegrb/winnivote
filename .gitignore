@@ -4,8 +4,9 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore bundler config
+# Ignore bundler config and installed gems
 /.bundle
+/vendor/ruby
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
@@ -16,3 +17,7 @@
 
 # Ignoring the database config file
 config/database.yml
+
+# Vagrant stuff
+.vagrant
+
