@@ -1,7 +1,7 @@
 Winnipegrb::Application.routes.draw do
   devise_for :users
 
-  root :to => "welcome#index"
+  root :to => "ideas#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
