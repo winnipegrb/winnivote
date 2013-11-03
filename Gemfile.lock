@@ -135,12 +135,9 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaclass (0.0.1)
     method_source (0.8.2)
     mime-types (1.25)
     mini_portile (0.5.2)
-    mocha (0.14.0)
-      metaclass (~> 0.0.1)
     multi_json (1.8.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
@@ -260,7 +257,6 @@ DEPENDENCIES
   guard-rspec
   jasminerice!
   jquery-rails
-  mocha
   poltergeist!
   rails (= 3.2.14)
   rb-fchange
