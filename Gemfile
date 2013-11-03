@@ -8,6 +8,7 @@ gem 'sqlite3'
 gem 'devise'
 
 gem 'jquery-rails'
+gem 'slim'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -20,10 +21,24 @@ end
 
 group :development, :test do
   gem 'debugger' 
+  gem 'fuubar'
+  gem "jasminerice", :git => 'https://github.com/bradphelan/jasminerice.git'
+  gem 'guard-jasmine'
+  gem 'rb-fchange', :require => false
+  gem 'rb-fsevent', :require => RUBY_PLATFORM.include?('darwin') && 'rb-fsevent'
+  gem 'rb-inotify', '~> 0.8.8', :require => RUBY_PLATFORM.include?('linux') && 'rb-inotify'
+  gem 'growl-rspec', :require => RUBY_PLATFORM.include?('darwin') && 'growl-rspec'
 end
 
 group :test do
-  gem 'mocha'
-  gem 'factory_girl'
+  gem 'guard-rspec'
+  gem 'guard-bundler'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'poltergeist', :git => "https://github.com/jonleighton/poltergeist.git"
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'shoulda'
+  gem 'capybara-screenshot'
 end
 
