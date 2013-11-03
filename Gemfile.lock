@@ -1,3 +1,20 @@
+GIT
+  remote: https://github.com/bradphelan/jasminerice.git
+  revision: 091349c27343bfa728b8e5745675f9ddbb7d9699
+  specs:
+    jasminerice (0.1.0)
+      coffee-rails
+
+GIT
+  remote: https://github.com/jonleighton/poltergeist.git
+  revision: e4c7550083d6afbc767a19eca8d0eafc25fac6a5
+  specs:
+    poltergeist (1.4.1)
+      capybara (~> 2.1.0)
+      cliver (~> 0.2.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -28,9 +45,23 @@ GEM
     activesupport (3.2.14)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    addressable (2.3.5)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
+    capybara (2.1.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    capybara-screenshot (0.3.14)
+      capybara (>= 1.0, < 3)
+      launchy
+    childprocess (0.3.9)
+      ffi (~> 1.0, >= 1.0.11)
+    cliver (0.2.2)
+    coderay (1.0.9)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -40,6 +71,7 @@ GEM
     coffee-script-source (1.6.3)
     columnize (0.3.6)
     daemons (1.1.9)
+    database_cleaner (1.2.0)
     debugger (1.6.1)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
@@ -51,11 +83,43 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    diff-lcs (1.2.4)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.0.1)
     factory_girl (4.2.0)
       activesupport (>= 3.0.0)
+    factory_girl_rails (4.2.1)
+      factory_girl (~> 4.2.0)
+      railties (>= 3.0.0)
+    ffi (1.9.3)
+    formatador (0.2.4)
+    fuubar (1.2.1)
+      rspec (~> 2.0)
+      rspec-instafail (~> 0.2.0)
+      ruby-progressbar (~> 1.0)
+    growl (1.0.3)
+    growl-rspec (0.0.1)
+      growl
+      rspec
+    guard (1.7.0)
+      formatador (>= 0.2.4)
+      listen (>= 0.6.0)
+      lumberjack (>= 1.0.2)
+      pry (>= 0.9.10)
+      thor (>= 0.14.6)
+    guard-bundler (1.0.0)
+      bundler (~> 1.0)
+      guard (~> 1.1)
+    guard-jasmine (1.18.3)
+      childprocess
+      guard (>= 1.1.0)
+      multi_json
+      thor
+      tilt
+    guard-rspec (2.5.4)
+      guard (>= 1.1)
+      rspec (~> 2.11)
     hike (1.2.3)
     i18n (0.6.5)
     journey (1.0.4)
@@ -63,17 +127,26 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    launchy (2.3.0)
+      addressable (~> 2.3)
     libv8 (3.16.14.3)
+    listen (0.7.3)
+    lumberjack (1.0.4)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaclass (0.0.1)
+    method_source (0.8.2)
     mime-types (1.25)
-    mocha (0.14.0)
-      metaclass (~> 0.0.1)
+    mini_portile (0.5.2)
     multi_json (1.8.0)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    pry (0.9.12.2)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.4)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -97,20 +170,53 @@ GEM
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
     rake (10.1.0)
+    rb-fchange (0.0.6)
+      ffi
+    rb-fsevent (0.9.3)
+    rb-inotify (0.8.8)
+      ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rspec (2.14.1)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    rspec-core (2.14.7)
+    rspec-expectations (2.14.3)
+      diff-lcs (>= 1.1.3, < 2.0)
+    rspec-instafail (0.2.4)
+    rspec-mocks (2.14.4)
+    rspec-rails (2.14.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 2.14.0)
+      rspec-expectations (~> 2.14.0)
+      rspec-mocks (~> 2.14.0)
+    ruby-progressbar (1.2.0)
     sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    shoulda (3.5.0)
+      shoulda-context (~> 1.0, >= 1.0.1)
+      shoulda-matchers (>= 1.4.1, < 3.0)
+    shoulda-context (1.1.5)
+    shoulda-matchers (2.4.0)
+      activesupport (>= 3.0.0)
+    slim (2.0.2)
+      temple (~> 0.6.6)
+      tilt (>= 1.3.3, < 2.1)
+    slop (3.4.6)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.8)
+    temple (0.6.7)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -129,19 +235,37 @@ GEM
       multi_json (~> 1.0, >= 1.0.2)
     warden (1.2.1)
       rack (>= 1.0)
+    websocket-driver (0.3.0)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  capybara
+  capybara-screenshot
   coffee-rails (~> 3.2.1)
+  database_cleaner
   debugger
   devise
-  factory_girl
+  factory_girl_rails
+  fuubar
+  growl-rspec
+  guard-bundler
+  guard-jasmine
+  guard-rspec
+  jasminerice!
   jquery-rails
-  mocha
+  poltergeist!
   rails (= 3.2.14)
+  rb-fchange
+  rb-fsevent
+  rb-inotify (~> 0.8.8)
+  rspec-rails
   sass-rails (~> 3.2.3)
+  shoulda
+  slim
   sqlite3
   therubyracer
   thin
