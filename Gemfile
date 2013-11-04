@@ -41,5 +41,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'capybara-screenshot'
+  gem 'faker'
 end
 
