@@ -1,8 +1,9 @@
 require 'features/features_helper'
 
-feature "List proposed ideas in order to vote", :js do
+feature "List proposed ideas in order to vote", :js, :focus do
   
   before do
+    @ideas = FactoryGirl.create_list :idea, 10
     visit('/')
   end
   
