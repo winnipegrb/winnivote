@@ -1,28 +1,33 @@
 require 'features/features_helper'
 
-feature "List proposed ideas in order to vote", :js, :focus do
+feature "List proposed ideas in order to vote", :js do
   
-  before do
-    @ideas = FactoryGirl.create_list :idea, 10
-    visit('/')
-  end
-  
-  context "When there's some ideas" do
-    before do
-      @ideas = all(:css, '.idea').map do |idea|
+  context "When there's some ideas"  do
+    let(:ideas) { FactoryGirl.create_list(:idea, 10) }
+    
+    let!(:expected) do
+      ideas.map do |i| 
         {
-          title: idea.find(:css, '.title').text,
-          description: idea.find(:css, '.description').text,
+          title: i.title,
+          description: i.description
         }
       end
     end
     
-    subject { @ideas }
+    before do
+      visit('/')
+    end
     
-    it { should == [{title: 'Idea1', description: 'Very nice idea'}]}
-  end
-  
-  context "When no ideas have been posted yet" do
+    subject do
+      all(:css, '.idea').map do |idea|
+        {
+         title: idea.find(:css, '.title').text,
+         description: idea.find(:css, '.description').text,
+        }
+      end
+    end      
+    
+    it { should =~ expected }
   end
 end
 
