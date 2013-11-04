@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rb-fsevent', :require => RUBY_PLATFORM.include?('darwin') && 'rb-fsevent'
   gem 'rb-inotify', '~> 0.8.8', :require => RUBY_PLATFORM.include?('linux') && 'rb-inotify'
   gem 'growl-rspec', :require => RUBY_PLATFORM.include?('darwin') && 'growl-rspec'
+  gem 'selenium-webdriver'
 end
 
 group :test do
@@ -40,5 +41,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'capybara-screenshot'
+  gem 'faker'
+  gem 'database_cleaner'
 end
 
