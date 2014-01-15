@@ -5,11 +5,18 @@ h1 Ideas
 ul 
   - @ideas.each do |idea|
     li.idea
-      .title = idea.title
-      .description = idea.description
+      div.labels
+        .title = idea.title
+        .description = idea.description
+        a.edit href='#' Edit
       .votes = idea.votes
       .upvote
         == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
+
+      = form_for idea, html: { style: 'display: none;' } do |f|
+        = f.text_field :title
+        = f.text_field :description
+        = f.submit 'Save'
 
 javascript:
   $('.upvote img').click( function() {

@@ -17,6 +17,12 @@ class IdeasController < ApplicationController
     
   end
 
+  def update
+    @idea = Idea.find(params[:id])
+    @idea.update_attributes(params[:idea])
+    redirect_to :root
+  end
+
   def upvote
     @idea = Idea.find(params[:id])
 
@@ -25,18 +31,5 @@ class IdeasController < ApplicationController
       format.json { render json: { votes: @idea.votes } }
     end
   end
-
-  def new
-    @idea = Idea.new
-  end
-
-  def create
-    @idea = Idea.new(params["idea"])
-    if @idea.save
-      redirect_to :root
-    else
-      render "new"
-    end
-    
-  end
+  
 end
