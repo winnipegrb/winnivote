@@ -1,6 +1,8 @@
 Winnipegrb::Application.routes.draw do
   devise_for :users
 
+  get "ideas/new" => "ideas#new", :as => "new_idea"
+  post "ideas/create" => "ideas#create", :as => "ideas"
   root :to => "ideas#index"
 
   resources :ideas do
