@@ -11,7 +11,11 @@
         .col-md-10
           h3.title = idea.title
           .description.lead = idea.description
-        
+        .col.md-12.hidden
+          = form_for idea do |f|
+          	= f.text_field :title
+          	= f.text_field :description
+          	= f.submit 'Save'
 
   javascript:
     $('.upvote img').click( function() {

@@ -100,4 +100,16 @@ describe IdeasController do
       end
     end
   end
+
+  describe '#update' do
+    before do
+      @idea = FactoryGirl.create :idea
+      @attr = { title:'Updated title', description:'Updated description' }
+      put :update, id: @idea.id, idea: @attr
+    end
+
+    it { should respond_with :success   }
+    it { should render_template(:index) }
+    it { assigns(:idea).should == @idea }
+  end
 end

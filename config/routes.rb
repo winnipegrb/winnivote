@@ -5,7 +5,7 @@ Winnipegrb::Application.routes.draw do
   post "ideas/create" => "ideas#create", :as => "ideas"
   root :to => "ideas#index"
 
-  resources :ideas do
+  resources :ideas, except: [:edit, :show] do
     put 'upvote', on: :member
   end
 

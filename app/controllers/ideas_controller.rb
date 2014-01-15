@@ -27,4 +27,10 @@ class IdeasController < ApplicationController
       format.json { render json: { votes: @idea.votes } }
     end
   end
+  
+  def update
+  	@idea = Idea.find(params[:id])
+  	@idea.update_attributes(params[:idea])
+  	redirect_to :root
+  end
 end
