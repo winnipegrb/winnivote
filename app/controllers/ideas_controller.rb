@@ -11,4 +11,18 @@ class IdeasController < ApplicationController
       format.json { render json: { votes: @idea.votes } }
     end
   end
+
+  def new
+    @idea = Idea.new
+  end
+
+  def create
+    @idea = Idea.new(params["idea"])
+    if @idea.save
+      redirect_to :root
+    else
+      render "new"
+    end
+    
+  end
 end
