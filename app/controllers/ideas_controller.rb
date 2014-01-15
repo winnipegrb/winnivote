@@ -30,7 +30,7 @@ class IdeasController < ApplicationController
   
   def update
   	@idea = Idea.find(params[:id])
-  	@idea.update_attributes(params[:idea])
-  	redirect_to :root
+  	#@idea.update_attributes(params[:idea])
+  	redirect_to action: "index"
   end
 end
