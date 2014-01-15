@@ -118,13 +118,17 @@ describe IdeasController do
 
   describe '#update' do
     before do
-      @idea = FactoryGirl.create :idea
+      @ideas = FactoryGirl.create_list :idea, 10
+      @idea = @ideas.first
       @attr = { title:'Updated title', description:'Updated description' }
       put :update, id: @idea.id, idea: @attr
+
     end
 
-    it { should respond_with :success }
-    it { should render_template(:index) }
-    it { assigns(:idea).should == @idea }
+    it { should respond_with :redirect }
+    it { should redirect_to :root }
+    
+    # How to test it actually got updated?
+    #it { assigns(:ideas).should == @ideas }
   end
 end
