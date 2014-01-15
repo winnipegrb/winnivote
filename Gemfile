@@ -44,7 +44,5 @@ group :test do
   gem 'shoulda'
   gem 'capybara-screenshot'
   gem 'faker'
-  gem 'database_cleaner'
-  gem 'site_prism'
 end
 
