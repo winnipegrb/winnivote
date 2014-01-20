@@ -4,19 +4,19 @@ h1 Ideas
 
 ul 
   - @ideas.each do |idea|
-    li.idea
+    li.idea id="idea_#{idea.id}"
       div.labels
-        .title = idea.title
-        .description = idea.description
+        span.title = idea.title
+        span.description = idea.description
         a.edit href='#' Edit
       .votes = idea.votes
       .upvote
         == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
 
-      = form_for idea, html: { style: 'display: none;' } do |f|
+      = form_for idea, html: { style: 'display: none;' }, remote: true do |f|
         = f.text_field :title
         = f.text_field :description
-        = f.submit 'Save'
+        = f.submit 'Save', class: 'save'
 
 javascript:
   $('.upvote img').click( function() {

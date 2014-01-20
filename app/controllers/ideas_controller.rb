@@ -20,7 +20,11 @@ class IdeasController < ApplicationController
   def update
     @idea = Idea.find(params[:id])
     @idea.update_attributes(params[:idea])
-    redirect_to action: "index"
+
+    respond_to do |format|
+      format.html { redirect_to action: "index" }
+      format.js
+    end
   end
 
   def upvote
