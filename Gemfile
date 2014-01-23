@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.14'
 gem 'thin'
 
-#gem 'mysql2'
+# gem 'mysql2'
 gem 'sqlite3'
 gem 'devise'
 
@@ -40,7 +40,6 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'poltergeist', :git => "https://github.com/jonleighton/poltergeist.git"
-  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'capybara-screenshot'
