@@ -5,6 +5,7 @@ describe IdeasController do
   describe '#index' do
     before do
       @ideas = FactoryGirl.create_list :idea, 10
+      controller.stub(:authenticate_user!)
       get :index
     end
     it { should respond_with :success }
