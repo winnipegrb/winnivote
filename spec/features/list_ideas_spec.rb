@@ -16,7 +16,7 @@ feature "List proposed ideas in order to vote", :js do
     
     before do
       login_as_user
-      visit('/')
+      visit(root_path)
     end
     
     subject do
@@ -32,20 +32,18 @@ feature "List proposed ideas in order to vote", :js do
   end
 end
 
-feature "Access to ideas list", :js, :ignore do
+feature "Access to ideas list", :js do
   
-  context "When not logged in"  do
+  context "When not logged in" do
 
     before do
-      visit('/')
+      visit(root_path)
     end
 
     it "Checks if redirect was successful" do
       # check if redirected to sign in page
-      # expect(@response).to redirect_to(user_registration_path)
-      assert_redirected_to user_registration_path
-      # response.code.should == "302"
-      # response.should redirect_to(user_registration_path)
+      current_path.should == new_user_session_path
+      page.should have_selector("form#new_user")
     end
 
   end
@@ -53,11 +51,14 @@ feature "Access to ideas list", :js, :ignore do
   context "When logged in"  do
 
     before do
-      visit('/')
       login_as_user
+      visit(root_path)
     end
     
-    # check if not redirected
-
+    it "Checks user was not redirected" do
+      # check if not redirected
+      current_path.should == root_path
+      page.should have_selector("p.notice")
+    end
   end
 end
