@@ -12,22 +12,23 @@ describe IdeasController do
     it { assigns(:ideas).should == @ideas }
   end
 
-  describe 'put #upvote' do
+  describe 'PUT #upvote' do
     let(:idea) { FactoryGirl.create(:idea) }
 
     before do
       Idea.stub(find: idea)
+      put :upvote, id: idea.to_param, format: :json
     end
 
-    it "tells the idea to upvote itself" do
-      idea.should_receive(:upvote!)
-
-      put :upvote, id: idea.to_param, format: :json
+    it "increases the votes of the idea by one" do
+      expect(idea.votes).to eq 1
+    end
+    
+    it "stores the increased votes value" do
+      expect(Idea.find(idea.id).votes).to eq 1
     end
 
     it "returns json containing the number of votes" do
-      put :upvote, id: idea.to_param, format: :json
-
       expect(response.body).to eq({votes: 1}.to_json)
     end
   end
