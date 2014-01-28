@@ -3,6 +3,10 @@ Winnipegrb::Application.routes.draw do
 
   root :to => "ideas#index"
 
+  resources :ideas do
+    put 'upvote', on: :member
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
