@@ -19,8 +19,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development, :test do
+group :development do
   gem 'debugger' 
+end
+
+group :development, :test do
   gem 'fuubar'
   gem "jasminerice", :git => 'https://github.com/bradphelan/jasminerice.git'
   gem 'guard-jasmine'
