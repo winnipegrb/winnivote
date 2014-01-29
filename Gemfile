@@ -19,8 +19,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
-  gem 'debugger' 
+group :debug do
+  gem 'debugger'
 end
 
 group :development, :test do
