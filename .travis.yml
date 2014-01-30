@@ -1,1 +1,5 @@
 bundler_args: --without development debug
+before_script:
+  - mkdir -p tmp/cache
+script:
+  - bundle exec rake db:migrate spec
