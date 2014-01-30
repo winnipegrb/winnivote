@@ -1,4 +1,5 @@
 # Winni Vote
+[![Build Status](https://travis-ci.org/winnipegrb/winnivote.png?branch=master)](https://travis-ci.org/winnipegrb/winnivote)
 
 ## Description
 

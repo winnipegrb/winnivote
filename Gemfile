@@ -20,7 +20,7 @@ group :assets do
 end
 
 group :debug do
-  gem 'debugger'
+  gem 'debugger', platforms: :ruby_19
 end
 
 group :development, :test do
@@ -45,6 +45,5 @@ group :test do
   gem 'shoulda'
   gem 'capybara-screenshot'
   gem 'faker'
-  gem 'database_cleaner'
 end
 
