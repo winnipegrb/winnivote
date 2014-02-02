@@ -2,6 +2,11 @@ require 'spec_helper'
 
 describe IdeasController do
   
+  before :each do
+    @user = FactoryGirl.create :user
+    sign_in @user
+  end
+  
   describe '#index' do
     before do
       @ideas = FactoryGirl.create_list :idea, 10
