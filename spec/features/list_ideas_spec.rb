@@ -2,6 +2,10 @@ require 'features/features_helper'
 
 feature "List proposed ideas in order to vote", :js do
   
+  before do
+    log_me_in
+  end
+
   context "When there's some ideas"  do
     let(:ideas) { FactoryGirl.create_list(:idea, 10) }
     
@@ -15,7 +19,6 @@ feature "List proposed ideas in order to vote", :js do
     end
     
     before do
-      login_as_user
       visit(root_path)
     end
     
@@ -32,48 +35,3 @@ feature "List proposed ideas in order to vote", :js do
   end
 end
 
-feature "Access to ideas list", :js do
-  
-  context "When not logged in" do
-
-    before do
-      visit(root_path)
-    end
-
-    it "Checks if redirect was successful" do
-      # check if redirected to sign in page
-      current_path.should == new_user_session_path
-      page.should have_selector("form#new_user")
-    end
-
-    it "Should have unauthenticated user nav" do
-      # check if page has user nav and the right subelements
-      page.should_not have_selector("nav.user ul li a", text: "Sign out")
-      page.should have_selector("nav.user ul li a", text: "Sign up")
-      page.should have_selector("nav.user ul li a", text: "Sign in")
-    end
-
-  end
-
-  context "When logged in"  do
-
-    before do
-      login_as_user
-      visit(root_path)
-    end
-    
-    it "Checks user was not redirected" do
-      # check if not redirected
-      current_path.should == root_path
-      page.should_not have_selector("form#new_user")
-    end
-
-    it "Should have authenticated user nav" do
-      # check if page has user nav and the right subelements
-      page.should have_selector("nav.user ul li a", text: "Sign out")
-      page.should_not have_selector("nav.user ul li a", text: "Sign up")
-      page.should_not have_selector("nav.user ul li a", text: "Sign in")
-    end
-
-  end
-end
