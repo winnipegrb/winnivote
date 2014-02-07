@@ -11,14 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140115004002) do
+ActiveRecord::Schema.define(:version => 20140207010256) do
+
+  create_table "brainstorms", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
+  end
 
   create_table "ideas", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "votes",       :default => 0
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+    t.integer  "votes",         :default => 0
+    t.integer  "brainstorm_id"
   end
 
   create_table "users", :force => true do |t|
