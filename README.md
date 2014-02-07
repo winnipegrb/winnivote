@@ -67,6 +67,6 @@ Alternatively, go to https://github.com/winnipegrb/winnivote, fork it, and clone
 
 ```
 bundle install
-bundle exec db:migrate
+bundle exec rake db:migrate
 bundle exec rails s
 ```
