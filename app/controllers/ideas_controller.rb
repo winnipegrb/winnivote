@@ -3,6 +3,20 @@ class IdeasController < ApplicationController
     @ideas = Idea.all
   end
 
+  def new
+    @idea = Idea.new
+  end
+
+  def create
+    @idea = Idea.new(params["idea"])
+    if @idea.save
+      redirect_to :root
+    else
+      render "new"
+    end
+    
+  end
+
   def upvote
     @idea = Idea.find(params[:id])
 
