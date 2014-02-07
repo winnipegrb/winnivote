@@ -18,3 +18,12 @@ $ ->
 
 		list_item_labels.toggle('slow')
 		list_item_form.toggle('slow')
+
+	$(".upvote img").click ->
+		$el = $(this)
+		url = "/ideas/" + $el.data("idea-id") + "/upvote"
+		$.ajax(
+			url: url
+			type: "put"
+		).done (data) ->
+			$el.parent().parent().find(".votes").text data.votes

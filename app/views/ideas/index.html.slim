@@ -17,15 +17,4 @@ ul
         = f.text_field :title
         = f.text_field :description
         = f.submit 'Save', class: 'save'
-
-javascript:
-  $('.upvote img').click( function() {
-    $el = $(this);
-    url = "/ideas/" + $el.data('idea-id') + "/upvote";
-    $.ajax({
-      url: url,
-      type: 'put'
-    }).done(function(data) {
-      $el.parent().parent().find('.votes').text(data.votes);
-    });
-  });
+        
