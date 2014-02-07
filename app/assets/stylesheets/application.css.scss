@@ -11,7 +11,43 @@
  *= require_self
  *= require_tree .
  */
+ 
+ 
+ @import "bootstrap";
+ @import "bootstrap/theme";
+
+ body{
+  background: #fff;
+  color: #2c3e50;
+
+ }
 
 .upvote img {
   cursor: pointer
+}
+
+li{
+  list-style: none;
+  position: relative;
+  left: 30px;
+}
+
+.idea {
+  border: 1px solid #ecf0f1;
+  border-radius: 10px;
+  margin: 5px;
+  padding: 10px;
+  // background: #ecf0f1;
+}
+.idea:hover{
+  border: 1px solid #bdc3c7;
+  
+}
+
+.votes {
+  font-size: 2em;
+}
+
+.idea{
+
 }

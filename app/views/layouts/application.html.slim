@@ -7,8 +7,9 @@ html
     = csrf_meta_tags
 
 body
+  .container
+    h1 WinniVote
+    p.notice=notice
+    p.alert=alert
 
-  p.notice=notice
-  p.alert=alert
-
-  = yield
+    = yield
