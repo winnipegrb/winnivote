@@ -2,6 +2,10 @@ require 'features/features_helper'
 
 feature "List proposed ideas in order to vote", :js do
   
+  before do
+    log_me_in
+  end
+
   context "When there's some ideas"  do
     let(:ideas) { FactoryGirl.create_list(:idea, 10) }
     
@@ -15,7 +19,7 @@ feature "List proposed ideas in order to vote", :js do
     end
     
     before do
-      visit('/')
+      visit(root_path)
     end
     
     subject do

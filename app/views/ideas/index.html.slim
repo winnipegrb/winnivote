@@ -7,3 +7,18 @@ ul
     li.idea
       .title = idea.title
       .description = idea.description
+      .votes = idea.votes
+      .upvote
+        == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
+
+javascript:
+  $('.upvote img').click( function() {
+    $el = $(this);
+    url = "/ideas/" + $el.data('idea-id') + "/upvote";
+    $.ajax({
+      url: url,
+      type: 'put'
+    }).done(function(data) {
+      $el.parent().parent().find('.votes').text(data.votes);
+    });
+  });
