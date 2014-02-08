@@ -1,6 +1,14 @@
 require 'features/features_helper'
 
 feature "Sign up", :js do
+  def fill_out_signup_form_and_submit( input_values )
+    visit new_user_registration_path
+    input_values.each do |name, value|
+      fill_in "user_" + name.to_s, with: value
+    end
+
+    click_button "Sign up"
+  end
 
   context "The sign up page" do
     before do
@@ -19,16 +27,8 @@ feature "Sign up", :js do
   end
   
   context "When the user signs up successfully" do
-    def fill_out_signup_form_and_submit
-      fill_in "user_email", with: "gannon@email.com"
-      fill_in "user_password", with: "asdf12345678"
-      fill_in "user_password_confirmation", with: "asdf12345678"
-      click_button "Sign up"
-    end
-
     before do
-      visit new_user_registration_path
-      fill_out_signup_form_and_submit
+      fill_out_signup_form_and_submit email: "gannon@email.com", password: "asdf12345678", password_confirmation: "asdf12345678"
     end
 
     it "they end up on the home page of the site" do
@@ -45,16 +45,56 @@ feature "Sign up", :js do
   end
 
   describe "Failure cases" do
-    context "When one or more of the required fields are not filled in" do
+    def there_is_a_notification_on_the_page( text_of_the_notification )
+      expect(page).to have_selector "#error_explanation li", text: text_of_the_notification
+    end
+    context "When the required fields are not filled in" do
       before do
         visit new_user_registration_path
         click_button "Sign up"
       end
 
-      context "Missing email address" do
-        it "the user is notified that the email address is required" do
-          expect(page).to have_selector "#error_explanation li", text: "Email can't be blank"
-        end
+      it "the user is notified that each of the required fields must be provided" do
+        there_is_a_notification_on_the_page "Email can't be blank"
+        there_is_a_notification_on_the_page "Password can't be blank"
+      end
+    end
+
+    context "When the password confirmation does not match the provided password" do
+      before do
+        fill_out_signup_form_and_submit password: "asdf12345678", password_confirmation: "12345678asdf"
+      end
+      it "notifies the user" do
+        there_is_a_notification_on_the_page "Password doesn't match confirmation"
+      end
+    end
+
+    context "When the password is too short" do
+      before do
+        fill_out_signup_form_and_submit password: "1234567"
+      end
+      it "notifies the user" do
+        there_is_a_notification_on_the_page "Password is too short (minimum is 8 characters)"
+      end
+    end
+
+    context "When the password is too long" do
+      before do
+        a_password_that_is_130_chars_long = "12345678901234567890" * 13
+        fill_out_signup_form_and_submit password: a_password_that_is_130_chars_long
+      end
+      it "notifies the user" do
+        there_is_a_notification_on_the_page "Password is too long (maximum is 128 characters)"
+      end
+    end
+
+    context "When they provide an email address that is already signed up" do
+      before do
+        user = FactoryGirl.create :user, email: 'email@example.com'
+        fill_out_signup_form_and_submit email: user.email
+      end
+      it "notifies the user" do
+        there_is_a_notification_on_the_page "Email has already been taken"
       end
     end
   end
