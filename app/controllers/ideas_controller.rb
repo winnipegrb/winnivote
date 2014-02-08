@@ -17,6 +17,16 @@ class IdeasController < ApplicationController
     
   end
 
+  def update
+    @idea = Idea.find(params[:id])
+    @idea.update_attributes(params[:idea])
+
+    respond_to do |format|
+      format.html { redirect_to action: "index" }
+      format.js
+    end
+  end
+
   def upvote
     @idea = Idea.find(params[:id])
 
@@ -26,17 +36,4 @@ class IdeasController < ApplicationController
     end
   end
 
-  def new
-    @idea = Idea.new
-  end
-
-  def create
-    @idea = Idea.new(params["idea"])
-    if @idea.save
-      redirect_to :root
-    else
-      render "new"
-    end
-    
-  end
 end

@@ -104,5 +104,19 @@ describe IdeasController do
       it { Idea.count.should == @idea_count }
     end
   end
-  
+
+  describe '#update' do
+    let(:ideas) { FactoryGirl.create_list :idea, 10 }
+    let(:idea) { ideas.first }
+    let(:attributes) { { title:'Updated title', description:'Updated description' } }
+
+    before { put :update, id: idea.id, idea: attributes }
+
+    it "updates the idea" do
+      expect(idea.reload.title).to eq attributes[:title]
+    end
+
+    it { should respond_with :redirect }
+    it { should redirect_to :root }
+  end
 end

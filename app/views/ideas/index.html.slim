@@ -4,21 +4,17 @@ h1 Ideas
 
 ul 
   - @ideas.each do |idea|
-    li.idea
-      .title = idea.title
-      .description = idea.description
+    li.idea id="idea_#{idea.id}"
+      div.labels
+        span.title = idea.title
+        span.description = idea.description
+        a.edit href='#' Edit
+
+      = form_for idea, html: { style: 'display: none;' }, remote: true do |f|
+        = f.text_field :title
+        = f.text_field :description
+        = f.submit 'Save', class: 'save'
+
       .votes = idea.votes
       .upvote
         == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
-
-javascript:
-  $('.upvote img').click( function() {
-    $el = $(this);
-    url = "/ideas/" + $el.data('idea-id') + "/upvote";
-    $.ajax({
-      url: url,
-      type: 'put'
-    }).done(function(data) {
-      $el.parent().parent().find('.votes').text(data.votes);
-    });
-  });
