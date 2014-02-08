@@ -1,6 +1,22 @@
 require 'features/features_helper'
 
 feature "Sign up", :js do
+
+  context "The sign up page" do
+    before do
+      visit(new_user_registration_path)
+    end
+
+    it "has a form with email address, password, and password confirmation fields" do
+      [ 'email', 'password', 'password_confirmation' ].each do |field_name|
+        page.should have_selector "input#user_" + field_name
+      end
+    end
+
+    it "has a link to the sign in page, for people who already have an account" do
+      page.should have_selector( "a[href='#{new_user_session_path}']" )
+    end
+  end
   
   context "When signing up" do
 
