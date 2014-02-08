@@ -9,12 +9,12 @@ ul
         span.title = idea.title
         span.description = idea.description
         a.edit href='#' Edit
-      .votes = idea.votes
-      .upvote
-        == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
 
       = form_for idea, html: { style: 'display: none;' }, remote: true do |f|
         = f.text_field :title
         = f.text_field :description
         = f.submit 'Save', class: 'save'
-        
+
+      .votes = idea.votes
+      .upvote
+        == image_tag "golden_boy.png", data: {"idea-id" => idea.id}

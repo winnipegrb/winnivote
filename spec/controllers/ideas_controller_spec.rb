@@ -104,31 +104,19 @@ describe IdeasController do
       it { Idea.count.should == @idea_count }
     end
   end
-  
-  # describe '#edit' do
-  #   before do
-  #     @idea = FactoryGirl.create :idea
-  #     get :edit, id: @idea.id
-  #   end
-
-  #   it { should respond_with :success }
-  #   it { should render_template(:edit) }
-  #   it { assigns(:idea).should == @idea }
-  # end
 
   describe '#update' do
-    before do
-      @ideas = FactoryGirl.create_list :idea, 10
-      @idea = @ideas.first
-      @attr = { title:'Updated title', description:'Updated description' }
-      put :update, id: @idea.id, idea: @attr
+    let(:ideas) { FactoryGirl.create_list :idea, 10 }
+    let(:idea) { ideas.first }
+    let(:attributes) { { title:'Updated title', description:'Updated description' } }
 
+    before { put :update, id: idea.id, idea: attributes }
+
+    it "updates the idea" do
+      expect(idea.reload.title).to eq attributes[:title]
     end
 
     it { should respond_with :redirect }
     it { should redirect_to :root }
-    
-    # How to test it actually got updated?
-    #it { assigns(:ideas).should == @ideas }
   end
 end
