@@ -49,6 +49,8 @@ GEM
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
+    bootstrap-sass (3.1.0.2)
+      sass (~> 3.2)
     builder (3.0.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -97,6 +99,9 @@ GEM
     faker (1.1.2)
       i18n (~> 0.5)
     ffi (1.9.3)
+    ffi (1.9.3-x86-mingw32)
+    font-awesome-sass (4.0.2)
+      sass-rails (>= 3.1.1)
     formatador (0.2.4)
     fuubar (1.2.1)
       rspec (~> 2.0)
@@ -264,6 +269,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  bootstrap-sass (~> 3.1.0)
   capybara
   capybara-screenshot
   coffee-rails (~> 3.2.1)
@@ -272,6 +278,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  font-awesome-sass
   fuubar
   growl-rspec
   guard-bundler
