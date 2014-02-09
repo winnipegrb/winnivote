@@ -16,12 +16,10 @@ javascript:
   $('.upvote img').click( function() {
     $el = $(this);
     url = "/ideas/" + $el.data('idea-id') + "/upvote";
-    console.log(url);
     $.ajax({
       url: url,
       type: 'put'
     }).done(function(data) {
-      console.log(data.votes);
       $el.parent().parent().find('.votes').text(data.votes);
     });
   });
