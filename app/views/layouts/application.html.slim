@@ -9,7 +9,9 @@ html
   body
     = render :partial => "layouts/user_navbar"
     .container
-      p.notice=notice
-      p.alert=alert
+      - flash.each do |key, value|
+        .notification class='#{key}' 
+          button.close type='button' class='close' data-dismiss='alert' x
+          = value
 
       = yield

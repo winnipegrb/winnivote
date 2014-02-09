@@ -12,14 +12,21 @@
  *= require_tree .
  */
  
- 
- @import "bootstrap";
- @import "bootstrap/theme";
+@import "bootstrap";
+@import "bootstrap/theme";
 
- body{
+body {
   background: #fff;
   color: #2c3e50;
-  margin-top: 50px;
+  margin-top: 70px;
+  
+  .notification {
+    @extend .alert;
+    &.alert   { @extend .alert-warning; }
+    &.notice  { @extend .alert-info;    }
+    &.success { @extend .alert-success; }
+    &.error   { @extend .alert-danger;  }
+  }
  }
 
 .upvote img {
