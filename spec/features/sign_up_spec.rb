@@ -48,54 +48,51 @@ feature "Sign up", :js do
     def there_is_a_notification_on_the_page( text_of_the_notification )
       expect(page).to have_selector "#error_explanation li", text: text_of_the_notification
     end
-    context "When the required fields are not filled in" do
-      before do
-        visit new_user_registration_path
-        click_button "Sign up"
-      end
 
-      it "the user is notified that each of the required fields must be provided" do
-        there_is_a_notification_on_the_page "Email can't be blank"
-        there_is_a_notification_on_the_page "Password can't be blank"
-      end
-    end
+    a_password_that_is_130_chars_long = "12345678901234567890" * 13
 
-    context "When the password confirmation does not match the provided password" do
-      before do
-        fill_out_signup_form_and_submit password: "asdf12345678", password_confirmation: "12345678asdf"
-      end
-      it "notifies the user" do
-        there_is_a_notification_on_the_page "Password doesn't match confirmation"
-      end
-    end
-
-    context "When the password is too short" do
-      before do
-        fill_out_signup_form_and_submit password: "1234567"
-      end
-      it "notifies the user" do
-        there_is_a_notification_on_the_page "Password is too short (minimum is 8 characters)"
-      end
-    end
-
-    context "When the password is too long" do
-      before do
-        a_password_that_is_130_chars_long = "12345678901234567890" * 13
-        fill_out_signup_form_and_submit password: a_password_that_is_130_chars_long
-      end
-      it "notifies the user" do
-        there_is_a_notification_on_the_page "Password is too long (maximum is 128 characters)"
+    [
+      {
+        context: "When the required fields are not filled in",
+        signup_inputs: {},
+        expected_notifications: [ "Email can't be blank", "Password can't be blank" ]
+      },
+      {
+        context: "When the password confirmation does not match the provided password",
+        signup_inputs: { password: "asdf12345678", password_confirmation: "12345678asdf" },
+        expected_notifications: [ "Password doesn't match confirmation" ]
+      },
+      {
+        context: "When the password is too short",
+        signup_inputs: { password: "1234567" },
+        expected_notifications: [ "Password is too short (minimum is 8 characters)" ]
+      },
+      {
+        context: "When the password is too long",
+        signup_inputs: { password: a_password_that_is_130_chars_long },
+        expected_notifications: [ "Password is too long (maximum is 128 characters)" ]
+      },
+    ].each do |possible_failure_case|
+      context possible_failure_case[ :context ] do
+        before do
+          fill_out_signup_form_and_submit possible_failure_case[ :signup_inputs ]
+        end
+        possible_failure_case[ :expected_notifications ].each do |expected_notification_text|
+          it 'the user is notified: "' + expected_notification_text + '"' do
+            there_is_a_notification_on_the_page expected_notification_text
+          end
+        end
       end
     end
 
     context "When they provide an email address that is already signed up" do
-      before do
-        user = FactoryGirl.create :user, email: 'email@example.com'
-        fill_out_signup_form_and_submit email: user.email
-      end
-      it "notifies the user" do
-        there_is_a_notification_on_the_page "Email has already been taken"
-      end
+        before do
+          an_email_address_that_is_already_signed_up = FactoryGirl.create( :user, email: 'email@example.com' ).email
+          fill_out_signup_form_and_submit email: an_email_address_that_is_already_signed_up 
+        end
+        it 'the user is notified: "Email has already been taken"' do
+          there_is_a_notification_on_the_page "Email has already been taken"
+        end
     end
   end
 end
