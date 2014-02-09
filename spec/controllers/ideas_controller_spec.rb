@@ -15,10 +15,7 @@ describe IdeasController do
     end
 
     describe "PUT #upvote" do
-
-      before do
-        put :upvote, id: 5, format: :json
-      end
+      before {put :upvote, id: 5, format: :json}
 
       it "responds with unauthorized status" do
         expect(response.status).to eq 401
@@ -102,16 +99,25 @@ describe IdeasController do
   end
 
   describe '#update' do
-    before do
-      @ideas = FactoryGirl.create_list :idea, 10
-      @idea = @ideas.first
-      @attr = { title:'Updated title', description:'Updated description' }
-      put :update, id: @idea.id, idea: @attr
+    let!(:ideas) { FactoryGirl.create_list :idea, 10 }
+    let(:idea)   { ideas.first }
+    let(:attr)   { { title:'Updated title', description:'Updated description' } }
 
+    context "when the request is html" do
+      before {put :update, id: idea.id, idea: attr}
+      it { should respond_with :not_acceptable   }
     end
+    
+    context "when the request is JSON" do
+      before {put :update, :format => :json, id: idea.id, idea: attr}
 
-    it { should respond_with :success   }
-    it { should render_template(:index) }
-    it { assigns(:idea).should == @idea }
+      it { should respond_with :no_content }
+
+      it "updates the idea on the database" do
+        idea.reload
+        expect(idea.title).to eq attr[:title]
+        expect(idea.description).to eq attr[:description]
+      end
+    end
   end
 end
