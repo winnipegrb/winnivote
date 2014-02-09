@@ -1,14 +1,6 @@
 require 'features/features_helper'
 
 feature "Sign up", :js do
-  def fill_out_signup_form_and_submit( input_values )
-    visit new_user_registration_path
-    input_values.each do |name, value|
-      fill_in "user_" + name.to_s, with: value
-    end
-
-    click_button "Sign up"
-  end
 
   context "The sign up page" do
     before do
@@ -45,13 +37,7 @@ feature "Sign up", :js do
   end
 
   describe "Failure cases" do
-    def there_is_a_notification_on_the_page( text_of_the_notification )
-      expect(page).to have_selector "#error_explanation li", text: text_of_the_notification
-    end
-
-    a_password_that_is_130_chars_long = "12345678901234567890" * 13
-
-    [
+    confirm_these_possible_signup_failure_cases_are_handled [
       {
         context: "When the required fields are not filled in",
         signup_inputs: {},
@@ -69,21 +55,10 @@ feature "Sign up", :js do
       },
       {
         context: "When the password is too long",
-        signup_inputs: { password: a_password_that_is_130_chars_long },
+        signup_inputs: { password: a_password_that_is_130_chars_long = "12345678901234567890" * 13 },
         expected_notifications: [ "Password is too long (maximum is 128 characters)" ]
       },
-    ].each do |possible_failure_case|
-      context possible_failure_case[ :context ] do
-        before do
-          fill_out_signup_form_and_submit possible_failure_case[ :signup_inputs ]
-        end
-        possible_failure_case[ :expected_notifications ].each do |expected_notification_text|
-          it 'the user is notified: "' + expected_notification_text + '"' do
-            there_is_a_notification_on_the_page expected_notification_text
-          end
-        end
-      end
-    end
+    ]
 
     context "When they provide an email address that is already signed up" do
         before do
