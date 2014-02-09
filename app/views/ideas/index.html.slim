@@ -1,15 +1,16 @@
 h1 Ideas
-
 =link_to "Add New Idea", new_idea_path
 
-ul 
+ul
   - @ideas.each do |idea|
-    li.idea
-      .title = idea.title
-      .description = idea.description
-      .votes = idea.votes
-      .upvote
-        == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
+    li.idea.row
+      .col-md-2
+        .votes = idea.votes
+        .upvote == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
+      .col-md-10
+        h3.title = idea.title
+        .description.lead = idea.description
+      
 
 javascript:
   $('.upvote img').click( function() {
