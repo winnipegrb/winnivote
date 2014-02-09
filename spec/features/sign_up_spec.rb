@@ -1,8 +1,12 @@
 require 'features/features_helper'
 
-feature "Sign up", :js do
+feature "User Sign up", %q{
+  As a User
+  I want to sign up
+  So I can login and start voting for ideas
+}, :js do
   
-  context "When signing up" do
+  context "When the visitor is not registered" do
 
     before do
       visit(new_user_registration_path)
@@ -15,10 +19,13 @@ feature "Sign up", :js do
       click_button "Sign up"
     end
 
-    it "Should flash success and log in" do
-      page.should have_selector("body p.notice", text: "Welcome! You have signed up successfully.")
-      page.should have_selector("nav.user ul li a", text: "Sign out")
+    it "Shows the sing up confirmation message" do
+      expect(page).to have_selector(".notification", text: "Welcome! You have signed up successfully.")
     end
 
+    it "shows the sign out option on the menu" do
+      expect(page).to have_selector("nav.user ul li a", text: "Sign out")
+    end
+    
   end
 end
