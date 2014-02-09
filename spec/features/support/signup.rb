@@ -14,7 +14,7 @@ def confirm_these_possible_signup_failure_cases_are_handled( possible_failure_ca
 end
 
 def fill_out_signup_form_and_submit( input_values )
-  visit new_user_registration_path
+  visit_signup_page
   input_values.each do |name, value|
     fill_in "user_" + name.to_s, with: value
   end
@@ -24,4 +24,8 @@ end
 
 def there_is_a_notification_on_the_page( text_of_the_notification )
   expect(page).to have_selector "#error_explanation li", text: text_of_the_notification
+end
+
+def visit_signup_page
+  visit new_user_registration_path
 end
