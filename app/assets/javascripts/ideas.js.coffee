@@ -1,11 +1,10 @@
 $ ->
 	$('.edit').click ->
-
-		$(this).parent().toggle('slow');
-		$(this).parent().siblings('form').toggle('slow')
+    id = $(this).attr('data-target')
+    $("#idea-#{id} .idea-content").toggle('slow')
+    $("#idea-#{id} .idea-form").toggle('slow')
 
 	$('.save').click ->
-
 		list_item = $(this).closest('li.idea')
 		list_item_form = list_item.find('form')
 		list_item_labels = list_item.find('.labels')

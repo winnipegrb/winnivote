@@ -1,12 +1,16 @@
-li.idea.row
-  .col-md-2
-    .votes = idea.votes
-    .upvote == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
-  .col-md-10
-    h3.title = idea.title
-    .description.lead = idea.description
-  .col.md-12.hidden
+li.idea id='idea-#{idea.id}'
+  .row.idea-content
+    .col-md-2
+      .votes = idea.votes
+      .upvote == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
+    .col-md-9
+      h3.title = idea.title
+      .description.lead = idea.description
+    .col-md-1
+      a.edit href='#' data-target="#{idea.id}" Edit
+      
+  .idea-form
     = form_for idea do |f|
     	= f.text_field :title
     	= f.text_field :description
-    	= f.submit 'Save'
+    	= f.submit 'Save', class: 'save'
