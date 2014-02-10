@@ -51,6 +51,7 @@ GEM
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (3.1.0.2)
       sass (~> 3.2)
+    bootstrap_form (2.0.1)
     builder (3.0.4)
     capybara (2.1.0)
       mime-types (>= 1.16)
@@ -270,6 +271,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.1.0)
+  bootstrap_form
   capybara
   capybara-screenshot
   coffee-rails (~> 3.2.1)
