@@ -6,10 +6,10 @@ feature "Sign in", :js do
 
     before do
       visit(root_path)
+      click_link "Sign in"
     end
 
-    it "Checks if redirect was successful" do
-      # check if redirected to sign in page
+    it "Should be on sign in page and have sign in form" do
       current_path.should == new_user_session_path
       page.should have_selector("form#new_user")
     end
