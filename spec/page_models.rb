@@ -9,26 +9,28 @@ module PageModels
 	#Sections
   
   class UserNav < SitePrism::Section
-    element :winnivote_link, ""
-    element :sign_in_link, ""
-    element :sign_up_link, ""
+    element :winnivote_link, "a.navbar-brand", text: "Winnivote"
+    element :sign_in_link,   "ul.nav li a", text: "Sign In"
+    element :sign_up_link,   "ul.nav li a", text: "Sign Up"
+    element :sign_out_link,  "ul.nav li a", text: "Sign Out"
   end
 
   class AuthenticationForm < SitePrism::Section
-    element :email_field, ""
-    element :password_field, ""
-    element :password_confirmation_field, ""
-    element :remember_me_checkbox, ""
-    element :sign_in_button, ""
-    element :sign_up_button, ""
-    element :sign_in_link, ""
-    element :sign_up_link, ""
-    element :forgot_password_link, ""
+    element :email_field, "#user_email"
+    element :password_field, "#user_password"
+    element :password_confirmation_field, "#user_password_confirmation"
+    element :remember_me_checkbox, "#user_remember_me"
+    element :sign_in_button, "input[name='commit'][value='Sign In']"
+    element :sign_up_button, "input[name='commit'][value='Sign Up']"
+    # Out of scope, to be fixed
+    # element :sign_in_link, ""
+    # element :sign_up_link, ""
+    # element :forgot_password_link, ""
   end
 
   class IdeasList < SitePrism::Section
-    element :idea_list, ""
-    element :add_idea_link, ""
+    element :ideas_title, "h1", text: "Ideas"
+    element :ideas, "ul li.idea"
   end
 
   #Pages
@@ -56,5 +58,5 @@ module PageModels
   	section :user_nav, UserNav, "#user_nav"
   	section :sign_up_form, AuthenticationForm, "#new_user"
   end
-  
+
 end
