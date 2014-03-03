@@ -25,16 +25,16 @@ module PageModels
     # element :forgot_password_link, ""
   end
 
-  class IdeasList < SitePrism::Section
-    element :ideas_title, "h1", text: "Ideas"
-    sections :ideas, "ul li.idea"
-  end
-
   class Idea < SitePrism::Section
     element :vote_count, "div.votes"
     element :upvote_image, "div.upvote img"
     element :title, "h3.title"
     element :description, "div.description"
+  end
+  
+  class IdeasList < SitePrism::Section
+    element :ideas_title, "h1", text: "Ideas"
+    sections :ideas, Idea, "ul li.idea"
   end
 
   #Pages
