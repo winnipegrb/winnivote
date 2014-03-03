@@ -1,6 +1,3 @@
-require 'capybara'
-require 'capybara/rspec'
-require 'selenium-webdriver'
 require 'site_prism'
 
 #Test Page Models
@@ -30,7 +27,14 @@ module PageModels
 
   class IdeasList < SitePrism::Section
     element :ideas_title, "h1", text: "Ideas"
-    element :ideas, "ul li.idea"
+    sections :ideas, "ul li.idea"
+  end
+
+  class Idea < SitePrism::Section
+    element :vote_count, "div.votes"
+    element :upvote_image, "div.upvote img"
+    element :title, "h3.title"
+    element :description, "div.description"
   end
 
   #Pages
@@ -40,7 +44,7 @@ module PageModels
 
     elements :notifications, "#notifications div.notification"
     section :user_nav, UserNav, "#user_nav"
-    section :ideas, IdeasList, "#ideas"
+    section :idea_list, IdeasList, "#ideas"
   end
 
   class SignIn < SitePrism::Page
