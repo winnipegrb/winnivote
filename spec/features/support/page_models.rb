@@ -31,10 +31,19 @@ module PageModels
     element :title, "h3.title"
     element :description, "div.description"
   end
-  
+
   class IdeasList < SitePrism::Section
-    element :ideas_title, "h1", text: "Ideas"
-    sections :ideas, Idea, "ul li.idea"
+    element  :ideas_title, "h1", text: "Ideas"
+    sections :idea_items, Idea, "ul li.idea"
+
+    def ideas
+      idea_items.map do |idea|
+        { 
+          title: idea.title.text, 
+          description: idea.description.text,
+        }
+      end
+    end
   end
 
   #Pages
