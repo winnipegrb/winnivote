@@ -1,9 +1,4 @@
-require 'site_prism'
-
-#Test Page Models
 module PageModels
-
-	#Sections
   
   class UserNav < SitePrism::Section
     element :winnivote_link, "a.navbar-brand", text: "Winnivote"
@@ -45,31 +40,5 @@ module PageModels
       end
     end
   end
-
-  #Pages
-	
-  class Home < SitePrism::Page
-    set_url "/"
-
-    elements :notifications, "#notifications div.notification"
-    section :user_nav, UserNav, "#user_nav"
-    section :idea_list, IdeasList, "#ideas"
-  end
-
-  class SignIn < SitePrism::Page
-  	set_url "/users/sign_in"
-
-  	elements :notifications, "#notifications div.notification"
-  	section :user_nav, UserNav, "#user_nav"
-  	section :sign_in_form, AuthenticationForm, "#new_user"
-  end
-
-  class SignUp < SitePrism::Page
-  	set_url "/users/sign_up"
-
-  	elements :notifications, "#notifications div.notification"
-  	section :user_nav, UserNav, "#user_nav"
-  	section :sign_up_form, AuthenticationForm, "#new_user"
-  end
-
+  
 end

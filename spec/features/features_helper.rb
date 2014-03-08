@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'capybara/rspec'
 require 'capybara-screenshot/rspec'
 require 'factory_girl_rails'
+require 'site_prism'
 
 Dir[Rails.root.join("spec/features/support/**/*.rb")].each { |f| require f } 
 
