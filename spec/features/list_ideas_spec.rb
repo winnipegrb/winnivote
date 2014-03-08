@@ -20,9 +20,9 @@ feature "List proposed ideas in order to vote", :js do
 
   context "When there are ideas to list" do
 
-    let(:ideas) { FactoryGirl.create_list(:idea, 10) }
+    let!(:ideas) { FactoryGirl.create_list(:idea, 10) }
     
-    let!(:expected) do
+    let(:expected) do
       ideas.map do |idea| 
         {
           title: idea.title,
