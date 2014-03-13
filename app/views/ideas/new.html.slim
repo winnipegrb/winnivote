@@ -3,5 +3,6 @@
   = simple_form_for @idea do |f|
     = f.input :title
     = f.input :description
+    = f.input :project_id, collection: Project.all
     = f.button :submit, 'Create Idea'
     = link_to "Cancel", :back, class: 'cancel'

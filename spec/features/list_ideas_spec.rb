@@ -15,15 +15,25 @@ feature "List proposed ideas in order to vote", :js do
       expect(subject).to_not have_idea_items
     end
   end
-  
-  context "When there are some ideas"  do
-    let!(:ideas)   { FactoryGirl.create_list(:idea, 10) }    
-    let(:expected) { ideas.map { |i| idea_to_hash i }   }
 
-    before { @home.load }
+  context "When there are ideas to list" do
+
+    let!(:expected) do
+      FactoryGirl.create_list(:idea, 10, :with_project).map do |idea| 
+        idea_to_hash idea
+      end
+    end
+
+    before do
+      @home.load
+    end
+
+    subject do
+      @home.idea_list.ideas
+    end
 
     it "should have ideas" do
-      expect(subject.ideas).to eq expected
+      expect(subject).to eq expected
     end
   end
 end
