@@ -13,6 +13,7 @@ RSpec.configure do | config |
   config.include Warden::Test::Helpers
   config.include Capybara::DSL
   config.include LoginHelpers, :type => :feature
+  config.include IdeaHelpers, :type => :feature
   config.include PageModels, :type => :feature
   
 end
