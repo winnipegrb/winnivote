@@ -13,6 +13,23 @@ describe IdeasController do
       it { should render_template(:index) }
       it { assigns(:ideas).should == @ideas }
     end
+
+    describe "PUT #upvote" do
+      let(:idea) { FactoryGirl.create :idea }
+
+      before do
+        Idea.stub(find: idea)
+        put :upvote, id: idea.to_param, format: :json
+      end
+
+      it "responds with unauthorized status" do
+        expect(response.status).to eq 401
+      end
+
+      it "doesn't increase the votes" do
+        expect(idea.votes).to eq 0
+      end
+    end
   end
 
   context "When user is signed in" do 
