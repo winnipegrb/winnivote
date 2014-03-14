@@ -34,6 +34,7 @@ group :development, :test do
   gem 'rb-inotify', '~> 0.8.8', :require => RUBY_PLATFORM.include?('linux') && 'rb-inotify'
   gem 'growl-rspec', :require => RUBY_PLATFORM.include?('darwin') && 'growl-rspec'
   gem 'selenium-webdriver'
+  gem 'rspec-rails'
 end
 
 group :test do
@@ -41,7 +42,6 @@ group :test do
   gem 'site_prism'
   gem 'guard-rspec'
   gem 'guard-bundler'
-  gem 'rspec-rails'
   gem 'capybara'
   gem 'poltergeist', :git => "https://github.com/jonleighton/poltergeist.git"
   gem 'factory_girl_rails'
