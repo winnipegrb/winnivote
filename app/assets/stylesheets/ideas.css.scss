@@ -17,3 +17,23 @@
     }
   }
 }
+
+.idea {
+
+  .edit {
+    @extend .btn;
+    @extend .btn-default;
+  }
+
+  .save {
+    @extend .btn;
+    @extend .btn-primary;
+  }
+
+  .cancel {
+    @extend .btn;
+    @extend .btn-default;
+    margin-left: 10px;
+  }
+  
+}
