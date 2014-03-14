@@ -10,7 +10,7 @@ li.idea id='idea-#{idea.id}'
       a.edit href='#' data-target="#{idea.id}" Edit
       
   .idea-form
-    = form_for idea do |f|
+    = form_for(idea, remote: true) do |f|
     	= f.text_field :title
     	= f.text_field :description
     	= f.submit 'Save', class: 'save'
