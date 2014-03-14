@@ -1,0 +1,19 @@
+@import 'bootstrap/variables';
+@import 'bootstrap/mixins';
+@import 'bootstrap/buttons';
+
+#new-idea-submission {
+  
+  form {
+    
+    input[type='submit'] {
+      @extend .btn-primary;
+    }
+    
+    .cancel {
+      @extend .btn;
+      @extend .btn-default;
+      margin-left: 10px;
+    }
+  }
+}

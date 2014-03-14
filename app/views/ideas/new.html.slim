@@ -1,10 +1,7 @@
-h1 New idea
-= form_for(@idea) do |f|
-  .form-group
-    = f.label :title
-    = f.text_field :title, class: 'form-control'
-  .form-group
-    = f.label :description
-    = f.text_area :description, class: 'form-control'
-
-  button type="submit" class="btn btn-default" Create Idea
+#new-idea-submission
+  h1 New idea
+  = simple_form_for @idea do |f|
+    = f.input :title
+    = f.input :description
+    = f.button :submit, 'Create Idea'
+    = link_to "Cancel", :back, class: 'cancel'
