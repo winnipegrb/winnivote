@@ -7,7 +7,7 @@ li.idea id='idea-#{idea.id}' data-target="#{idea.id}"
       h3.title = idea.title
       .description.lead = idea.description
     .col-md-1
-      a.edit href='#'  Edit
+      a.edit href='#' Edit
       
   .idea-form
     = form_for(idea, remote: true) do |f|
