@@ -1,0 +1,10 @@
+h1 New idea
+= form_for(@idea) do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+  .form-group
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
+
+  button type="submit" class="btn btn-default" Create Idea
