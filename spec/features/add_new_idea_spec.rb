@@ -17,5 +17,20 @@ feature "Add new idea", :js do
   it { Idea.count.should > 0 }
   it { page.should have_content idea.title }
   it { page.should have_content idea.description }
+
+  context "New idea page" do
+    before do
+      visit new_idea_path
+    end
+
+    it "has labels for entry fields" do
+      page.should have_xpath "//label[@for='idea_title']"
+      page.should have_xpath "//label[@for='idea_description']"
+    end
+
+    it "has a page title" do
+      page.should have_css "h1", text: "New idea"
+    end
+  end
 end
 
