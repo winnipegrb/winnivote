@@ -44,7 +44,8 @@ li{
   border-radius: 10px;
   margin: 5px;
   padding: 10px;
-  // background: #ecf0f1;
+  min-height: 130px;
+  .idea-form { display: none; }
 }
 .idea:hover{
   border: 1px solid #bdc3c7;

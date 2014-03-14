@@ -4,14 +4,7 @@
 
   ul
     - @ideas.each do |idea|
-      li.idea.row
-        .col-md-2
-          .votes = idea.votes
-          .upvote == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
-        .col-md-10
-          h3.title = idea.title
-          .description.lead = idea.description
-        
+      = render idea
 
   javascript:
     $('.upvote img').click( function() {

@@ -21,3 +21,5 @@ config/database.yml
 # Vagrant stuff
 .vagrant
 
+# OSX hidden files
+.DS_Store

@@ -1,0 +1,17 @@
+li.idea id='idea-#{idea.id}' data-target="#{idea.id}"
+  .row
+    .col-md-2
+      .votes = idea.votes
+      .upvote == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
+    .idea-content.col-md-10
+        h3.title = idea.title
+        .description.lead = idea.description
+        a.edit href='#' Edit
+        
+    .idea-form.col-md-10
+      = form_for(idea, remote: true) do |f|
+        .div.form-group
+          = f.text_field :title, class: 'form-control'
+        .div.form-group
+          = f.text_field :description, class: 'form-control'
+        = f.submit 'Save', class: 'save btn btn-link'
