@@ -17,9 +17,9 @@ feature "List proposed ideas in order to vote", :js do
       @home.idea_list.should_not have_idea_items
     end
   end
-
-  context "When there are ideas to list" do
-    
+  
+  context "When there's some ideas"  do
+    let(:ideas) { FactoryGirl.create_list(:idea, 10) }    
     let!(:expected) do
       FactoryGirl.create_list(:idea, 10).map do |idea| 
         idea_to_hash idea
