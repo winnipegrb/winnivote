@@ -7,35 +7,23 @@ feature "List proposed ideas in order to vote", :js do
     @home = PageModels::Home.new
   end
 
+  subject { @home.idea_list }
+
   context "When there are no ideas to list" do
-
-    before do
-      @home.load
-    end
-
+    before { @home.load }
     it "should not have ideas" do
-      @home.idea_list.should_not have_idea_items
+      expect(subject).to_not have_idea_items
     end
   end
   
-  context "When there's some ideas"  do
-    let(:ideas) { FactoryGirl.create_list(:idea, 10) }    
-    let!(:expected) do
-      FactoryGirl.create_list(:idea, 10).map do |idea| 
-        idea_to_hash idea
-      end
-    end
+  context "When there are some ideas"  do
+    let!(:ideas)   { FactoryGirl.create_list(:idea, 10) }    
+    let(:expected) { ideas.map { |i| idea_to_hash i }   }
 
-    before do
-      @home.load
-    end
-
-    subject do
-      @home.idea_list.ideas
-    end
+    before { @home.load }
 
     it "should have ideas" do
-      expect(subject).to eq expected
+      expect(subject.ideas).to eq expected
     end
   end
 end

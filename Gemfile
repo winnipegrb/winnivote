@@ -36,6 +36,7 @@ end
 
 group :test do
   gem 'database_cleaner'
+  gem 'site_prism'
   gem 'guard-rspec'
   gem 'guard-bundler'
   gem 'rspec-rails'
