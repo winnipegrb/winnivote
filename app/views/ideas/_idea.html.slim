@@ -1,4 +1,4 @@
-li.idea id='idea-#{idea.id}'
+li.idea id='idea-#{idea.id}' data-target="#{idea.id}"
   .row.idea-content
     .col-md-2
       .votes = idea.votes
@@ -7,7 +7,7 @@ li.idea id='idea-#{idea.id}'
       h3.title = idea.title
       .description.lead = idea.description
     .col-md-1
-      a.edit href='#' data-target="#{idea.id}" Edit
+      a.edit href='#'  Edit
       
   .idea-form
     = form_for(idea, remote: true) do |f|

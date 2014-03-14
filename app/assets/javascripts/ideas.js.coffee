@@ -1,13 +1,13 @@
 $ ->
 	$('.edit').click ->
 
-    id = $(this).attr('data-target')
+    id = $(this).closest('.idea').attr('data-target')
     $("#idea-#{id} .idea-content").toggle('slow')
     $("#idea-#{id} .idea-form").toggle('slow')
 
 	$('.save').click ->
 
-    id = $(this).attr('data-target')
+    id = $(this).closest('.idea').attr('data-target')
 
     $("#idea-#{id} .idea-content").toggle('slow')
     $("#idea-#{id} .idea-form").toggle('slow')
