@@ -43,5 +43,4 @@ SimpleForm.setup do |config|
   config.form_class = "form-horizontal"
   config.label_class = "col-xs-2 col-sm-2 col-md-2 col-lg-2 control-label"
   #config.input_class = "form-control" #not yet supported
-  config.default_wrapper = :bootstrap
 end
