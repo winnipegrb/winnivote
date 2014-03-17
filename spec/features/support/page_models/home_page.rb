@@ -36,7 +36,7 @@ module PageModels
 
     def change_idea(old_idea, new_idea)
       within("#idea-#{old_idea.id}") do
-        click_link 'Edit'
+        click_button 'Edit'
         fill_in 'idea_title', with: new_idea.title
         fill_in 'idea_description', with: new_idea.description
         click_on 'Save'
