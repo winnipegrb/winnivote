@@ -1,11 +1,11 @@
 require 'features/support/page_models/sections'
 
 module PageModels
-  
+
   def self.landing_page
     Home.new
   end
-  
+
   class Home < SitePrism::Page
     set_url "/"
 
@@ -22,7 +22,7 @@ module PageModels
 
       def ideas
         idea_items.map do |idea|
-          { 
+          {
             title: idea.title.text, 
             description: idea.description.text,
           }
@@ -33,7 +33,7 @@ module PageModels
     elements :notifications, "#notifications div.notification"
     section  :user_nav, UserNav, "#user_nav"
     section  :idea_list, IdeasList, "#ideas"
-    
+
     def change_idea(old_idea, new_idea)
       within("#idea-#{old_idea.id}") do
         click_link 'Edit'
@@ -41,8 +41,9 @@ module PageModels
         fill_in 'idea_description', with: new_idea.description
         click_on 'Save'
       end
+
+      find("#idea-#{old_idea.id} .idea-content") # block until finished
     end
-    
-        
+
   end
 end
