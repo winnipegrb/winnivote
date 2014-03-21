@@ -70,3 +70,11 @@ bundle install
 bundle exec rake db:migrate
 bundle exec rails s
 ```
+
+### Running the tests
+
+1. [Install PhantomJS](http://phantomjs.org/download.html). It is a pre-requisite to running the feature specs.
+2. Run: ```bundle install``` to install all the gems for the project.
+2. Run: ```bundle exec rake db:migrate && bundle exec rake db:test:prepare``` to set up the test database.
+3. Run: ```mkdir -p tmp/cache```
+3. Run: ```bundle exec rspec``` to run all the tests.
