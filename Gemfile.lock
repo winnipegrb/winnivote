@@ -136,6 +136,10 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    knockout-rails (1.0.1)
+      execjs
+      jquery-rails
+      sprockets (>= 2.0.0)
     launchy (2.3.0)
       addressable (~> 2.3)
     libv8 (3.16.14.3)
@@ -292,6 +296,7 @@ DEPENDENCIES
   guard-rspec
   jasminerice!
   jquery-rails
+  knockout-rails
   poltergeist!
   rails (= 3.2.14)
   rb-fchange
