@@ -26,4 +26,20 @@ describe Idea do
       expect(subject.votes).to eq 43
     end
   end
+
+  describe "#project_name" do
+
+    context "with a project" do
+      subject { FactoryGirl.build :idea, :with_project }
+      it "returns the project name" do
+        expect(subject.project_name).to eq subject.project.name
+      end
+    end
+
+    context "without a project" do
+      it "returns a default project name" do
+        expect(subject.project_name).to eq ""
+      end
+    end
+  end
 end

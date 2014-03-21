@@ -11,23 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140207010256) do
-
-  create_table "brainstorms", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-    t.integer  "user_id"
-  end
+ActiveRecord::Schema.define(:version => 20140313234621) do
 
   create_table "ideas", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "votes",         :default => 0
-    t.integer  "brainstorm_id"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "votes",       :default => 0
+    t.integer  "project_id"
+  end
+
+  add_index "ideas", ["project_id"], :name => "index_ideas_on_project_id"
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

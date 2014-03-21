@@ -23,3 +23,4 @@ config/database.yml
 
 # OSX hidden files
 .DS_Store
+*.swp

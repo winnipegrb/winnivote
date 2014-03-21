@@ -6,8 +6,9 @@ li.idea id='idea-#{idea.id}' data-target="#{idea.id}"
     .idea-content.col-md-10
         h3.title = idea.title
         .description.lead = idea.description
+        .project = idea.project_name
         button.edit Edit
-        
+
     .idea-form.col-md-10
       = form_for(idea, remote: true) do |f|
         .div.form-group
