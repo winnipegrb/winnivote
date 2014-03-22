@@ -2,18 +2,11 @@
   h1 Ideas
   =link_to "Add New Idea", new_idea_path
 
-  ul
+  ul data-bind="foreach: ideas"
     - @ideas.each do |idea|
       = render idea
 
   javascript:
-    $('.upvote img').click( function() {
-      $el = $(this);
-      url = "/ideas/" + $el.data('idea-id') + "/upvote";
-      $.ajax({
-        url: url,
-        type: 'put'
-      }).done(function(data) {
-        $el.parent().parent().find('.votes').text(data.votes);
-      });
-    });
+    window.ideas = #{raw @ideas.to_json}
+  coffee:
+    ko.applyBindings new WinniVote.IdeasViewModel(ideas)
