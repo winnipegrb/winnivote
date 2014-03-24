@@ -2,9 +2,13 @@
   h1 Ideas
   =link_to "Add New Idea", new_idea_path
 
-  ul data-bind="foreach: ideas"
+  ul data-bind="#{"foreach: ideas" if @ideas.any?}"
     - @ideas.each do |idea|
       = render idea
+    - if @ideas.empty?
+      li.idea
+        .row
+          .col-md-2 No ideas yet. #{link_to "Add one", new_idea_path}?
 
   javascript:
     window.ideas = #{raw @ideas.to_json}
