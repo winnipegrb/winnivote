@@ -19,11 +19,13 @@ class WinniVote.IdeaViewModel extends WinniVote.Idea
   cancel: => 
     @toggleEditing 'form', 'content'
 
-  save: ->
+  save: =>
     @title @newTitle()
     @description @newDescription()
+    @update()
     @toggleEditing 'form', 'content'
     
+ 
   toggleEditing: (v1, v2)  =>
     id = "#idea-#{@id()}"
     $("#{id} .idea-#{v1}").fadeOut 'fast', -> $("#{id} .idea-#{v2}").fadeIn 'fast'
