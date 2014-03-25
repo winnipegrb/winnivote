@@ -2,7 +2,7 @@
   h1 Ideas
   =link_to "Add New Idea", new_idea_path
 
-  ul data-bind="#{"foreach: ideas" if @ideas.any?}"
+  ul data-bind="#{"foreach: ideasViewModel.ideas" if @ideas.any?}"
     - @ideas.each do |idea|
       = render idea
     - if @ideas.empty?
@@ -13,4 +13,5 @@
   javascript:
     window.ideas = #{raw @ideas.to_json}
   coffee:
-    ko.applyBindings new WinniVote.IdeasViewModel(ideas)
+    window.ideasViewModel = new WinniVote.IdeasViewModel(ideas)
+    ko.applyBindings ideasViewModel
