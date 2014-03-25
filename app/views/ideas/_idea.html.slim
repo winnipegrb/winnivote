@@ -7,13 +7,11 @@ li.idea data-bind="attr: {id: 'idea-' + id(), 'data-target': id}"
     .idea-content.col-md-10
         h3.title data-bind="text: title"
         .description.lead data-bind="text: description"
-        button.edit Edit
-
+        button.edit data-bind='click: edit' Edit 
+        
     .idea-form.col-md-10
       = form_for(Idea.new, remote: true) do |f|
-        .form-group
-          = f.text_field :title, class: 'form-control'
-        .form-group
-          = f.text_field :description, class: 'form-control'
-        = f.submit 'Save', class: 'save'
-        = f.button 'Cancel', class: 'cancel'
+        .form-group = f.text_field :title, class: 'form-control', 'data-bind' => 'value: newTitle'
+        .form-group = f.text_field :description, class: 'form-control', 'data-bind' => 'value: newDescription'
+        = f.submit 'Save', class: 'save', 'data-bind' => 'click: save'
+        = f.button 'Cancel', class: 'cancel', 'data-bind' => 'click: cancel'
