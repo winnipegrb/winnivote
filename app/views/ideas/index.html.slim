@@ -12,6 +12,7 @@
 
   javascript:
     window.ideas = #{raw @ideas.to_json}
+    ko.virtualElements.allowedBindings.foreachprop = true;
   coffee:
     window.ideasViewModel = new WinniVote.IdeasViewModel(ideas)
     ko.applyBindings ideasViewModel

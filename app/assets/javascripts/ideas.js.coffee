@@ -2,18 +2,18 @@ window.WinniVote = {}
 
 class WinniVote.Idea
   constructor: (json) ->
-    # @json = ko.mapping.fromJS(json, {}, this)
-    @id          = ko.observable json["id"]
-    @title       = ko.observable json["title"]
-    @description = ko.observable json["description"]
-    @votes       = ko.observable json["votes"]
+    @id          = ko.observable(json["id"])
+    @title       = ko.observable(json["title"])
+    @description = ko.observable(json["description"])
+    @votes       = ko.observable(json["votes"])
+
   upvote: ->
-    upvote_url = "/ideas/#{@id}/upvote"
     $.ajax
-      url: upvote_url,
-      type: "put"
-      success:
-        @votes(@votes +=1)
+      url: "/ideas/#{@id()}/upvote",
+      type: "put",
+      success: (data) =>
+        @votes(data['votes'])
+
 
 class WinniVote.IdeasViewModel
   constructor: (jsonIdeas) ->

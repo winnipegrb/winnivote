@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require knockout
+//= require knockout.mapping
 //= require_tree .
