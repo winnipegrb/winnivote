@@ -6,8 +6,9 @@ feature "Edit an idea", %q{
   So I can fix a typo
 }, :js do
 
-  let!(:ideas)   { FactoryGirl.create_list(:idea, 5) }
-  let(:new_idea) { FactoryGirl.build :idea }
+  let(:project)  { create :project }
+  let!(:ideas)   { create_list(:idea, 5, project: project) }
+  let(:new_idea) { build :idea, project: project }
   
   before do
     log_me_in
@@ -18,7 +19,7 @@ feature "Edit an idea", %q{
   
   let(:expected) do 
     ideas.shift 
-    ([new_idea] + ideas).map { |i| idea_to_hash i }
+    ([new_idea] + ideas).map &method(:idea_to_hash)
   end
 
   subject { @current_page.idea_list }

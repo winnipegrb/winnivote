@@ -7,6 +7,7 @@ li.idea data-bind="attr: {id: 'idea-' + id(), 'data-target': id}"
     .idea-content.col-md-10
         h3.title data-bind="text: title"
         .description.lead data-bind="text: description"
+        .project data-bind='text: projectName'
         button.edit data-bind='click: edit' Edit 
         
     .idea-form.col-md-10

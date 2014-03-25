@@ -11,7 +11,7 @@
 
 - content_for :javascripts
   javascript:
-    window.ideas = #{raw @ideas.to_json}
+    window.ideas = #{raw @ideas.to_json(include: :project)}
     
   coffee:
     ko.applyBindings new WinniVote.IdeasViewModel(ideas)

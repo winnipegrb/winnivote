@@ -1,7 +1,8 @@
 require 'features/features_helper'
 
 feature "Upvoting an idea increases the votes", :js do
-  let!(:ideas) { FactoryGirl.create_list(:idea, 10) }
+
+  let!(:ideas) { create_list(:idea, 10, :with_project) }
 
   before do
     log_me_in

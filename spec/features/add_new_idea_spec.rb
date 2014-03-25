@@ -6,7 +6,9 @@ feature "Add new idea", :js do
   end
 
   let!(:project) { FactoryGirl.create(:project) }
-  let(:idea) { Idea.new(title: "Some title", description: "Some description") }
+
+  let(:idea) { build :idea, title: "Some title", description: "Some description" }
+
   before do
     visit('/')
     click_link 'Add New Idea'

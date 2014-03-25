@@ -8,6 +8,7 @@ class WinniVote.IdeaViewModel extends WinniVote.Idea
   
   constructor: (json) ->
     super json
+    @projectName = ko.computed => @project?.name()
     @newTitle = ko.observable()
     @newDescription = ko.observable()
     
