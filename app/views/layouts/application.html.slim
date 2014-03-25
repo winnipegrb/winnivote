@@ -3,7 +3,6 @@ html
   head
     title WinniVote
     = stylesheet_link_tag    "application", media: "all", debug: true
-    = javascript_include_tag "application"
     = csrf_meta_tags
 
   body
@@ -16,3 +15,7 @@ html
             = value
 
       = yield
+
+    = javascript_include_tag "application" 
+    
+    == yield :javascripts

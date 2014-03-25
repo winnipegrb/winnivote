@@ -4,7 +4,7 @@ feature "Edit an idea", %q{
   As a User
   I want to edit an idea
   So I can fix a typo
-}, :js do
+}, :js, :focus do
 
   let!(:ideas)   { FactoryGirl.create_list(:idea, 5) }
   let(:new_idea) { FactoryGirl.build :idea }

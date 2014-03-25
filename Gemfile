@@ -9,6 +9,7 @@ gem 'devise'
 
 gem 'jquery-rails'
 gem 'slim'
+gem 'js-routes'
 
 gem 'simple_form'
 

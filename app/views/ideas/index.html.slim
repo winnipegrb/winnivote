@@ -1,18 +1,17 @@
 #ideas
   h1 Ideas
-  =link_to "Add New Idea", new_idea_path
+  = link_to "Add New Idea", new_idea_path
 
-  ul data-bind="#{"foreach: ideasViewModel.ideas" if @ideas.any?}"
-    - @ideas.each do |idea|
-      = render idea
-    - if @ideas.empty?
-      li.idea
-        .row
-          .col-md-2 No ideas yet. #{link_to "Add one", new_idea_path}?
+  ul data-bind="foreach: ideas"
+    = render partial: 'idea'
 
+  .no-ideas-yet.alert.alert-info data-bind='visible: empty'
+    | No ideas yet.
+    = link_to "Add one", new_idea_path
+
+- content_for :javascripts
   javascript:
     window.ideas = #{raw @ideas.to_json}
-    ko.virtualElements.allowedBindings.foreachprop = true;
+    
   coffee:
-    window.ideasViewModel = new WinniVote.IdeasViewModel(ideas)
-    ko.applyBindings ideasViewModel
+    ko.applyBindings new WinniVote.IdeasViewModel(ideas)

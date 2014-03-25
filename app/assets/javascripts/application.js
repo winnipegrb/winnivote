@@ -15,4 +15,6 @@
 //= require bootstrap
 //= require knockout
 //= require knockout.mapping
+//= require js-routes
+//= require winnivote
 //= require_tree .
