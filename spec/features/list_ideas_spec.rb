@@ -14,24 +14,24 @@ feature "List available ideas", %q{
   subject { @home.idea_list }
 
   context "When there are no ideas to list" do
-    before { @home.load }
-
-    it "shows an empty ideas message" do
-      expect(subject).to_not have_idea_items
+    Given do 
+      # no ideas are stored
     end
+    
+    When { @home.load }
+    
+    Then { expect(subject).to_not have_idea_items }
   end
 
   context "When there are ideas to list" do
+    let(:stored_ideas) { ideas.map &method(:idea_to_hash) }
 
-    let!(:ideas)   { create_list(:idea, 10, :with_project) }
-    let(:expected) { ideas.map &method(:idea_to_hash)      } 
-
-    before {@home.load}
-
-    subject {@home.idea_list.ideas}
-
-    it "should list all the ideas" do
-      expect(subject).to eq expected
+    Given!(:ideas) do
+      FactoryGirl.create_list(:idea, 10, :with_project)
     end
+    
+    When { @home.load }
+
+    Then { expect(subject.ideas).to eq stored_ideas }
   end
 end
