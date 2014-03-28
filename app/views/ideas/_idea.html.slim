@@ -1,19 +1,18 @@
-li.idea id='idea-#{idea.id}' data-target="#{idea.id}"
+li.idea data-bind="attr: {id: 'idea-' + id(), 'data-target': id}"
   .row
     .col-md-2
-      .votes = idea.votes
-      .upvote == image_tag "golden_boy.png", data: {"idea-id" => idea.id}
+      .votes  data-bind="text: votes" 
+      .upvote data-bind="click: upvote" == image_tag "golden_boy.png"
+      
     .idea-content.col-md-10
-        h3.title = idea.title
-        .description.lead = idea.description
-        .project = idea.project_name
-        button.edit Edit
-
+        h3.title data-bind="text: title"
+        .description.lead data-bind="text: description"
+        .project data-bind='text: projectName'
+        button.edit data-bind='click: edit' Edit 
+        
     .idea-form.col-md-10
-      = form_for(idea, remote: true) do |f|
-        .div.form-group
-          = f.text_field :title, class: 'form-control'
-        .div.form-group
-          = f.text_field :description, class: 'form-control'
-        = f.submit 'Save', class: 'save'
-        = f.button 'Cancel', class: 'cancel'
+      = form_for(Idea.new, remote: true) do |f|
+        .form-group = f.text_field :title, class: 'form-control', 'data-bind' => 'value: newTitle'
+        .form-group = f.text_field :description, class: 'form-control', 'data-bind' => 'value: newDescription'
+        = f.submit 'Save', class: 'save', 'data-bind' => 'click: save'
+        = f.button 'Cancel', class: 'cancel', 'data-bind' => 'click: cancel'

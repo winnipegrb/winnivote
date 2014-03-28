@@ -1,19 +1,17 @@
 #ideas
   h1 Ideas
-  =link_to "Add New Idea", new_idea_path
+  = link_to "Add New Idea", new_idea_path
 
-  ul
-    - @ideas.each do |idea|
-      = render idea
+  ul data-bind="foreach: ideas"
+    = render partial: 'idea'
 
+  .no-ideas-yet.alert.alert-info data-bind='visible: empty'
+    | No ideas yet.
+    = link_to "Add one", new_idea_path
+
+- content_for :javascripts
   javascript:
-    $('.upvote img').click( function() {
-      $el = $(this);
-      url = "/ideas/" + $el.data('idea-id') + "/upvote";
-      $.ajax({
-        url: url,
-        type: 'put'
-      }).done(function(data) {
-        $el.parent().parent().find('.votes').text(data.votes);
-      });
-    });
+    window.ideas = #{raw @ideas.to_json(include: :project)}
+    
+  coffee:
+    ko.applyBindings new WinniVote.IdeasViewModel(ideas)

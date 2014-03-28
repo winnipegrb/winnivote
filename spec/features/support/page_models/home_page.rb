@@ -1,4 +1,4 @@
-require 'features/support/page_models/sections'
+require 'features/support/page_models/application_page'
 
 module PageModels
 
@@ -6,11 +6,32 @@ module PageModels
     Home.new
   end
 
-  class Home < SitePrism::Page
+  class Home < ApplicationPage
     set_url "/"
 
-    elements :notifications, "#notifications div.notification"
-    section  :user_nav, UserNav, "#user_nav"
+    class Idea < SitePrism::Section
+      element :vote_count  , ".votes"
+      element :upvote_image, ".upvote img"
+      element :title       , "h3.title"
+      element :description , ".description"
+      element :project     , ".project"
+    end
+
+    class IdeasList < SitePrism::Section
+      element  :ideas_title, "h1", text: "Ideas"
+      sections :idea_items, Idea, "ul li.idea"
+
+      def ideas
+        idea_items.map do |idea|
+          { 
+            title: idea.title.text, 
+            description: idea.description.text,
+            project: idea.project.text
+          }
+        end
+      end
+    end
+
     section  :idea_list, IdeasList, "#ideas"
 
     def change_idea(old_idea, new_idea)
@@ -24,5 +45,6 @@ module PageModels
       find("#idea-#{old_idea.id} .idea-content") # block until finished
     end
 
+    
   end
 end
