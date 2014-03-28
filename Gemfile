@@ -50,5 +50,6 @@ group :test do
   gem 'shoulda'
   gem 'capybara-screenshot'
   gem 'faker'
+  gem 'rspec-given'
 end
 
