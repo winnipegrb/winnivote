@@ -4,7 +4,7 @@ require 'capybara-screenshot/rspec'
 require 'factory_girl_rails'
 require 'site_prism'
 
-Dir[Rails.root.join("spec/features/support/**/*.rb")].each { |f| require f } 
+Dir[Rails.root.join("spec/features/support/**/*.rb")].sort.each { |f| require f } 
 
 RSpec.configure do | config |
 
