@@ -1,7 +1,12 @@
 describe 'Idea', ->
   
   beforeEach ->
-    @subject = new WinniVote.Idea(id: 1, title: 'Crazy idea', description: 'super nice idea', votes: 5)
+    @subject = new WinniVote.Idea
+      id: 1
+      title: 'Crazy idea'
+      description: 'super nice idea'
+      votes: 5
+      project_id: 33
     
     
   describe '#constructor', ->
@@ -25,4 +30,21 @@ describe 'Idea', ->
       
       it "updates the votes in the model", -> expect(@subject.votes()).toBe 520
     
+    
+  describe '#update', ->
+    beforeEach ->
+      spyOn($, 'ajax')
+      @subject.update()
+      @args = $.ajax.mostRecentCall.args[0]
+    
+    it "call the upvote api URL", -> expect(@args.url).toBe Routes.idea_path(1)
+    it "uses PUT method"        , -> expect(@args.type).toBe 'put'
+    it "passes the idea as data", -> 
+      expected_data = 
+        idea:
+          title: 'Crazy idea'
+          description: 'super nice idea'
+          project_id: 33
+          
+      expect(@args.data).toEqual expected_data
     

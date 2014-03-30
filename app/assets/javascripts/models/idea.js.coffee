@@ -6,7 +6,7 @@ class WinniVote.Idea
     $.ajax
       url: Routes.idea_path @id()
       type: "put"
-      data: {idea: {title: @title(), description: @description(), project_id: @project_id}}
+      data: {idea: {title: @title(), description: @description(), project_id: @project_id()}}
     
   upvote: ->
     $.ajax
