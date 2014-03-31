@@ -26,8 +26,8 @@ class WinniVote.IdeaViewModel extends WinniVote.Idea
     @update()
     @toggleEditing 'form', 'content'
     
- 
-  toggleEditing: (v1, v2)  =>
+  # Switches between idea content div and idea edit div
+  toggleEditing: (fromName, toName)  =>
     id = "#idea-#{@id()}"
-    $("#{id} .idea-#{v1}").fadeOut 'fast', -> $("#{id} .idea-#{v2}").fadeIn 'fast'
+    $("#{id} .idea-#{fromName}").fadeOut 'fast', -> $("#{id} .idea-#{toName}").fadeIn 'fast'
     
