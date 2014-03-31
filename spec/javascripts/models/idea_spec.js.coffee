@@ -14,6 +14,7 @@ describe 'Idea', ->
     it 'has a title'      , -> expect(@subject.title()).toBe('Crazy idea')
     it 'has a description', -> expect(@subject.description()).toBe('super nice idea')
     it 'has votes'        , -> expect(@subject.votes()).toBe(5)
+    it 'has a project id' , -> expect(@subject.project_id()).toBe(33)
     
     
   describe '#upvote', ->
