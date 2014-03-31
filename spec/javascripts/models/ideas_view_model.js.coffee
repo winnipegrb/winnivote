@@ -4,7 +4,7 @@ describe "IdeasViewModel", ->
     @ideas = [
       {
         id: 128
-        title: "The besy idea ever"
+        title: "The best idea ever"
         description: "The best description ever"
         votes: 1024
         project_id: 1337
