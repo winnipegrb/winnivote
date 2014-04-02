@@ -15,8 +15,38 @@ describe "IdeaViewModel", ->
 
   describe "#edit", ->
     beforeEach ->
+      spyOn(@subject, "toggleEditing")
       @subject.edit()
 
     it "should have new title as title",             -> expect(@subject.newTitle()).toBe(@subject.title())
     it "should have new description as description", -> expect(@subject.newDescription()).toBe(@subject.description())
-    # it "should have toggled to edit mode",           -> expect(@form_vis).toBe(true)
+    it "should have toggled to edit mode",           -> expect(@subject.toggleEditing).toHaveBeenCalledWith("content", "form")
+
+  describe "#cancel", ->
+    beforeEach ->
+      spyOn(@subject, "toggleEditing")
+      @subject.cancel()
+
+    it "should have toggled to content mode", -> expect(@subject.toggleEditing).toHaveBeenCalledWith("form", "content")
+  
+  describe "#save", ->
+    beforeEach ->
+      spyOn(@subject, "toggleEditing")
+      spyOn(@subject, "update")
+      @subject.save()
+
+    it "should have a title as new title",             -> expect(@subject.title()).toBe(@subject.newTitle())
+    it "should have a description as new description", -> expect(@subject.description()).toBe(@subject.newDescription())
+    it "should have updated",                          -> expect(@subject.update).toHaveBeenCalled()
+    it "should have toggled to content mode",          -> expect(@subject.toggleEditing).toHaveBeenCalledWith("form", "content")
+
+  describe "#toggleEditing", ->
+    beforeEach ->
+      spyOn($.fn, "fadeOut")
+      spyOn($.fn, "fadeIn")
+      @subject.toggleEditing("from", "to")
+      @fadedOut = $.fn.fadeOut.callCount is 1
+
+    it "should toggle", ->
+      expect(@fadedOut).toEqual(true)
+      # fadeIn never triggered due to invalid $elem target
