@@ -20,5 +20,13 @@ describe "IdeasViewModel", ->
     @subject = new WinniVote.IdeasViewModel(@ideas)
 
   describe "#constructor", ->
-    it "has ideas",         -> expect({id: idea.id(), title: idea.title(), description: idea.description(), votes: idea.votes(), project_id: idea.project_id() } for idea in @subject.ideas()).toEqual(@ideas)
+    it "has ideas",         ->
+      expect(
+        {
+          id: idea.id()
+          title: idea.title()
+          description: idea.description()
+          votes: idea.votes()
+          project_id: idea.project_id()
+        } for idea in @subject.ideas()).toEqual(@ideas)
     it "has an empty flag", -> expect(@subject.empty()).toBe(false)
