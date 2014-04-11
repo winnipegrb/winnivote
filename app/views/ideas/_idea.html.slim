@@ -8,7 +8,8 @@ li.idea data-bind="attr: {id: 'idea-' + id(), 'data-target': id}"
         h3.title data-bind="text: title"
         .description.lead data-bind="text: description"
         .project data-bind='text: projectName'
-        button.edit data-bind='click: edit' Edit 
+        -if user_signed_in?
+          button.edit data-bind='click: edit' Edit 
         
     .idea-form.col-md-10
       = form_for(Idea.new, remote: true) do |f|
