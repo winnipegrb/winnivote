@@ -15,6 +15,7 @@ module PageModels
       element :title       , "h3.title"
       element :description , ".description"
       element :project     , ".project"
+      element :edit_button , ".edit"
     end
 
     class IdeasList < SitePrism::Section
@@ -29,6 +30,10 @@ module PageModels
             project: idea.project.text
           }
         end
+      end
+
+      def read_only?
+        !(idea_items.map { |idea| idea.has_edit_button? }.include? true)
       end
     end
 
