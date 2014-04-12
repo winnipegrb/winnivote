@@ -16,6 +16,7 @@ feature "Add new project", :js do
   end
 
   it { Project.count.should == project_count + 1 }
+  it { page.should have_content "Project successfully created" }
 
 end
 
