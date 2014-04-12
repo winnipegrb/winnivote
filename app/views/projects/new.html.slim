@@ -1,0 +1,6 @@
+#new-project-submission
+  h1 New project
+  = simple_form_for @project do |f|
+    = f.input :name
+    = f.button :submit, 'Create Project'
+    = link_to "Cancel", :back, class: 'cancel'
