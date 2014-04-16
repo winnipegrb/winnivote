@@ -9,10 +9,12 @@ feature "Add new project", :js do
   let(:project) { build :project, name: "Some name" }
 
   before do
-    visit('/')
-    click_link 'Create project'
-    fill_in "project[name]", with: project.name
-    click_button 'Create Project'
+    @current_page = PageModels.landing_page
+    @current_page.load
+    @current_page.user_nav.create_project_link.click
+
+    @current_page = PageModels::NewProject.new
+    @current_page.project_form.fill_and_submit(project)
   end
 
   it { Project.count.should == project_count + 1 }
