@@ -3,8 +3,8 @@ describe "IdeaViewModel", ->
   beforeEach ->
     @toggler = jasmine.createSpyObj("WinniVote.IdeaToggle", ["toggle"])
     spyOn(WinniVote, "IdeaToggle").andReturn @toggler
-    ideaJSON = WinniVote.IdeaFactory.getJSONIdea 128
-    @subject = new WinniVote.IdeaViewModel ideaJSON
+    ideaAttrs    = WinniVote.IdeaFactory.attributes()
+    @subject = new WinniVote.IdeaViewModel(ideaAttrs)
 
   describe "#constructor", ->
     it "has a project name",    -> expect(@subject.projectName()).toBe(undefined)
@@ -34,4 +34,3 @@ describe "IdeaViewModel", ->
     it "should have a description as new description", -> expect(@subject.description()).toBe(@subject.newDescription())
     it "should have updated",                          -> expect(@subject.update).toHaveBeenCalled()
     it "should have toggled to content mode",          -> expect(@toggler.toggle).toHaveBeenCalled()
-
