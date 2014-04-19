@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(:version => 20140313234621) do
   create_table "ideas", :force => true do |t|
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-    t.integer  "votes",         :default => 0
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "votes",       :default => 0
     t.integer  "project_id"
   end
 
