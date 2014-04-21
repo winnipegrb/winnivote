@@ -1,9 +1,8 @@
-class WinniVote.IdeaFactory
+class window.IdeaFactory
 
-  @attributesArray: (noOfIdeas) =>
-    @attributes(i) for i in [1 .. noOfIdeas]
+  @createList: (noOfIdeas) => (@create(i) for i in [1..noOfIdeas])
 
-  @attributes: (ideaId = 1) =>
+  @create: (ideaId=1) =>
     votes     = Math.floor(Math.random() * 9999) + 1
     projectId = Math.floor(Math.random() * 9999) + 1
 

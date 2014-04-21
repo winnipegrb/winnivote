@@ -1,11 +1,15 @@
 describe "IdeasViewModel", ->
 
   beforeEach ->
-    @ideaAttrsArray = WinniVote.IdeaFactory.attributesArray 2
-    @subject        = new WinniVote.IdeasViewModel(@ideaAttrsArray)
+    spyOn(WinniVote, "IdeaViewModel").andCallFake (idea) -> {target: -> idea}
+    
+    @ideas   = IdeaFactory.createList 2
+    @subject = new WinniVote.IdeasViewModel(@ideas)
 
   describe "#constructor", ->
-    it "has ideas",         -> expect(
-        WinniVote.IdeaHelpers.getAttributesForEach(@subject.ideas())
-      ).toEqual(@ideaAttrsArray)
-    it "has an empty flag", -> expect(@subject.empty()).toBe(false)
+    beforeEach -> @actualIdeas = (i.target() for i in @subject.ideas())
+      
+    it "loads all the ideas", -> expect(@actualIdeas).toEqual(@ideas)
+      
+    it "is not empty"       , -> expect(@subject.empty()).toBeFalsy()
+    
