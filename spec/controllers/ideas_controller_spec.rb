@@ -89,11 +89,11 @@ describe IdeasController do
       end
 
       it "increases the votes of the idea by one" do
-        expect(idea.reload.votes).to eq 1
+        expect(idea.reload.total_votes).to eq 1
       end
 
       it "returns json containing the number of votes" do
-        expect(response.body).to eq({votes: 1}.to_json)
+        expect(response.body).to eq({total_votes: 1}.to_json)
       end
     end
     

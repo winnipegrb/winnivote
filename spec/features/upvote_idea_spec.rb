@@ -13,11 +13,12 @@ feature "Upvoting an idea increases the votes", :js do
 
     first(".upvote img").click
 
-    expect(first(".votes")).to have_content "1"
+    expect(first(".total_votes")).to have_content "1"
 
     first(".upvote img").click
 
-    expect(first(".votes")).to have_content "2"
+    # a user cannot vote on an idea more than once
+    expect(first(".total_votes")).to have_content "1"
 
   end
 end

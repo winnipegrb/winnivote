@@ -21,9 +21,9 @@ describe Idea do
     subject { FactoryGirl.create :idea }
 
     it "increase the number of votes" do
-      votes { FactoryGirl.create_list :vote, 42, idea: subject }
+      FactoryGirl.create_list :vote, 42, idea: subject
       
-      subject.upvote
+      subject.upvote FactoryGirl.create :user
 
       expect(subject.total_votes).to eq 43
     end

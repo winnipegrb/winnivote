@@ -22,8 +22,8 @@ class IdeasController < ApplicationController
 
   def upvote
     @idea = Idea.find(params[:id])
-    @idea.upvote!
-    render json: {votes: @idea.votes}
+    @idea.upvote current_user
+    render json: {total_votes: @idea.total_votes}
   end
   
   def update

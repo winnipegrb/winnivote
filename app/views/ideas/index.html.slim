@@ -6,12 +6,13 @@
     = render partial: 'idea'
 
   .no-ideas-yet.alert.alert-info data-bind='visible: empty'
-    | No ideas yet.
+    | No ideas yet. 
     = link_to "Add one", new_idea_path
+    | ?
 
 - content_for :javascripts
   javascript:
-    window.ideas = #{raw @ideas.to_json(include: :project)}
+    window.ideas = #{raw @ideas.to_json(include: :project, methods: :total_votes)}
     
   coffee:
     ko.applyBindings new WinniVote.IdeasViewModel(ideas)
