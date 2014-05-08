@@ -12,5 +12,5 @@ class WinniVote.Idea
     $.ajax
       url: Routes.upvote_idea_path @id()
       type: "put",
-      success: (data) => @total_votes data.total_votes
+      success: (data) => @total_votes(data.total_votes)
 

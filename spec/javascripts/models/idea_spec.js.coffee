@@ -5,7 +5,7 @@ describe 'Idea', ->
       id: 1
       title: 'Crazy idea'
       description: 'super nice idea'
-      votes: 5
+      total_votes: 5
       project_id: 33
     
     
@@ -13,7 +13,7 @@ describe 'Idea', ->
     it 'has an id'        , -> expect(@subject.id()).toBe(1)
     it 'has a title'      , -> expect(@subject.title()).toBe('Crazy idea')
     it 'has a description', -> expect(@subject.description()).toBe('super nice idea')
-    it 'has votes'        , -> expect(@subject.votes()).toBe(5)
+    it 'has votes'        , -> expect(@subject.total_votes()).toBe(5)
     it 'has a project id' , -> expect(@subject.project_id()).toBe(33)
     
     
@@ -27,9 +27,9 @@ describe 'Idea', ->
     it "uses PUT method"        , -> expect(@args.type).toBe 'put'
     
     describe 'When the call succeeds', ->
-      beforeEach -> @args.success(votes: 520)
+      beforeEach -> @args.success(total_votes: 520)
       
-      it "updates the votes in the model", -> expect(@subject.votes()).toBe 520
+      it "updates the votes in the model", -> expect(@subject.total_votes()).toBe 520
     
     
   describe '#update', ->
