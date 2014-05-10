@@ -21,6 +21,19 @@ class WinniVote.IdeaViewModel extends WinniVote.Idea
     @update()
     @toggler.toggle()
 
+  upvote: =>
+    super(@upvoteViewUpdate)
+  
+  # upvote callback view update
+  upvoteViewUpdate: (data) =>
+    if data.total_votes
+      @total_votes(data.total_votes)
+    else if data.error
+      $error = $("#idea-#{@id()} .idea-error")
+      $error.text(data.error)
+      $error.slideDown('fast').delay(3000).slideUp 'fast', =>
+        $error.stop(true)
+
 class WinniVote.IdeaToggle
 
   constructor: (id) ->

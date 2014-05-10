@@ -1,7 +1,9 @@
 li.idea data-bind="attr: {id: 'idea-' + id(), 'data-target': id}"
   .row
+    .idea-error &nbsp;
+
     .col-md-2
-      .total_votes  data-bind="text: total_votes" 
+      .total-votes  data-bind="text: total_votes" 
       .upvote data-bind="click: upvote" == image_tag "golden_boy.png"
       
     .idea-content.col-md-10

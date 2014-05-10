@@ -8,7 +8,7 @@ class Idea < ActiveRecord::Base
 
   def upvote user
     vote = self.votes.build(user_id: user.id)
-    vote.save
+    vote.save!
   end
 
   def project_name

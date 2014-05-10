@@ -13,12 +13,18 @@ feature "Upvoting an idea increases the votes", :js do
 
     first(".upvote img").click
 
-    expect(first(".total_votes")).to have_content "1"
+    expect(first(".total-votes")).to have_content "1"
+
+  end
+
+  scenario "Clicking upvote on an already upvoted idea" do
+    visit "/"
 
     first(".upvote img").click
+    first(".upvote img").click
 
-    # a user cannot vote on an idea more than once
-    expect(first(".total_votes")).to have_content "1"
+    expect(first(".total-votes")).to have_content "1"
 
+    expect(first(".idea-error")).to have_content "You have already voted on this idea!"
   end
 end
