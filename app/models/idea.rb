@@ -6,9 +6,9 @@ class Idea < ActiveRecord::Base
   belongs_to :project
   has_many :votes
 
-  def upvote user
+  def upvote(user)
     vote = self.votes.build(user_id: user.id)
-    vote.save!
+    vote.save
   end
 
   def project_name
