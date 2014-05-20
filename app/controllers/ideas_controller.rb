@@ -22,11 +22,10 @@ class IdeasController < ApplicationController
 
   def upvote
     @idea = Idea.find(params[:id])
-    if @idea.upvote current_user
-      render json: {total_votes: @idea.total_votes}
-    else
-      render json: {error: "You have already voted on this idea!"}
-    end
+    @idea.upvote! current_user
+    render json: {total_votes: @idea.total_votes}
+  rescue
+    render json: {error: "You have already voted on this idea!"}
   end
   
   def update

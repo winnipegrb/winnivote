@@ -17,13 +17,13 @@ describe Idea do
     end
   end
 
-  describe '#upvote' do
+  describe '#upvote!' do
     subject { FactoryGirl.create :idea }
 
     it "increase the number of votes" do
       FactoryGirl.create_list :vote, 42, idea: subject
       
-      subject.upvote FactoryGirl.create :user
+      subject.upvote! FactoryGirl.create :user
 
       expect(subject.total_votes).to eq 43
     end
