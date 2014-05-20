@@ -1,10 +1,9 @@
 describe "IdeaViewModel", ->
 
   beforeEach ->
-    @toggler = jasmine.createSpyObj("WinniVote.IdeaToggle", ["toggle"])
+    @toggler   = jasmine.createSpyObj("WinniVote.IdeaToggle", ["toggle"])
     spyOn(WinniVote, "IdeaToggle").andReturn @toggler
-    
-    @subject = new WinniVote.IdeaViewModel IdeaFactory.create()
+    @subject = new WinniVote.IdeaViewModel(IdeaFactory.create())
 
   describe "#constructor", ->
     it "has a project name",    -> expect(@subject.projectName()).toBe(undefined)
@@ -32,3 +31,12 @@ describe "IdeaViewModel", ->
     it "should have a description as new description", -> expect(@subject.description()).toBe(@subject.newDescription())
     it "should have updated",                          -> expect(@subject.update).toHaveBeenCalled()
     it "should have toggled to content mode",          -> expect(@toggler.toggle).toHaveBeenCalled()
+
+  describe "#upvote", ->
+    beforeEach ->
+      @ideaProto = WinniVote.Idea.prototype
+      spyOn(@ideaProto, "upvote").andCallThrough
+      spyOn(@subject, "upvoteViewUpdate")
+      @subject.upvote()
+
+    it "should have called super upvote", -> expect(@ideaProto.upvote).toHaveBeenCalledWith(@subject.upvoteViewUpdate)

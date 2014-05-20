@@ -13,17 +13,19 @@ describe Idea do
     it "starts at zero votes" do
       idea = described_class.new
 
-      expect(idea.votes).to be_zero
+      expect(idea.total_votes).to be_zero
     end
   end
 
   describe '#upvote!' do
-    subject { FactoryGirl.create :idea, votes: 42 }
+    subject { FactoryGirl.create :idea }
 
     it "increase the number of votes" do
-      subject.upvote!
+      FactoryGirl.create_list :vote, 42, idea: subject
+      
+      subject.upvote! FactoryGirl.create :user
 
-      expect(subject.votes).to eq 43
+      expect(subject.total_votes).to eq 43
     end
   end
 

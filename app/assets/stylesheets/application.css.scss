@@ -45,14 +45,23 @@ li{
   margin: 5px;
   padding: 10px;
   min-height: 130px;
-  .idea-form { display: none; }
+  .idea-form  { 
+    display: none;
+  }
+  .idea-error { 
+    display: none;
+    color: #FF0000;
+    font-size: 1.2em;
+    position: relative;
+    left: 50px;
+  }
 }
 .idea:hover{
   border: 1px solid #bdc3c7;
   
 }
 
-.votes {
+.total-votes {
   font-size: 2em;
 }
 

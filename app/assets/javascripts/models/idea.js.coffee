@@ -8,9 +8,10 @@ class WinniVote.Idea
       type: "put"
       data: {idea: {title: @title(), description: @description(), project_id: @project_id()}}
     
-  upvote: ->
+  upvote: (handler) ->
     $.ajax
       url: Routes.upvote_idea_path @id()
       type: "put",
-      success: (data) => @votes data.votes
+      success: (data) -> 
+        handler data
 
