@@ -13,7 +13,8 @@
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
-/tmp
+/tmp/*
+!/tmp/cache/.gitkeep
 
 # Ignoring the database config file
 config/database.yml
